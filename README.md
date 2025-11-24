@@ -108,7 +108,7 @@ vidyut-bandhu/
 └── README.md                   # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -183,7 +183,7 @@ See [apps/admin/README.md](apps/admin/README.md) for detailed admin portal setup
 2. Click the install icon in the address bar
 3. The app will be installed and work offline
 
-## 📥 AI Models Setup
+## AI Models Setup
 
 The AI models are **not included** in this repository due to size. Download them separately:
 
@@ -221,7 +221,7 @@ mkdir -p apps/mobile/assets/models
 # Visit: https://github.com/rhasspy/piper/releases
 ```
 
-## 🎓 For Rural Schools - Deployment Guide
+## For Rural Schools - Deployment Guide
 
 ### Option 1: Raspberry Pi Server
 
@@ -282,7 +282,7 @@ mkdir -p apps/mobile/assets/models
    - Students sync progress via Bluetooth
    - No internet required after setup
 
-## 🔧 Development
+## Development
 
 ### Adding New Content
 
@@ -310,7 +310,7 @@ pnpm lint
 pnpm format
 ```
 
-## 📱 ESP32 Hardware Setup
+## ESP32 Hardware Setup
 
 See [firmware/esp32/README.md](firmware/esp32/README.md) for detailed instructions.
 
@@ -320,7 +320,7 @@ See [firmware/esp32/README.md](firmware/esp32/README.md) for detailed instructio
 3. Set reminder times in app
 4. Device vibrates/blinks LED at study times
 
-## 🎮 Gamification System
+## Gamification System
 
 ### Points
 - Quiz correct answer: 10 points
@@ -331,29 +331,29 @@ See [firmware/esp32/README.md](firmware/esp32/README.md) for detailed instructio
 - Mastery achieved: 100 points
 
 ### Badges
-- 👣 **First Steps** - Complete first lesson
-- 🔥 **Week Warrior** - 7-day streak
-- 🧮 **Math Master** - Master 10 math topics
-- 🔬 **Science Explorer** - Complete 20 science topics
-- 🤝 **Helpful Friend** - Help 5 peers
-- ⭐ **Point Collector** - Earn 1000 points
+- **First Steps** - Complete first lesson
+- **Week Warrior** - 7-day streak
+- **Math Master** - Master 10 math topics
+- **Science Explorer** - Complete 20 science topics
+- **Helpful Friend** - Help 5 peers
+- **Point Collector** - Earn 1000 points
 
 ### Knowledge Credits
 - Earn credits by helping peers
 - Spend credits to get help from advanced students
 - Creates a peer tutoring economy
 
-## 🌐 Supported Languages
+## Supported Languages
 
-- 🇬🇧 English
-- 🇮🇳 हिंदी (Hindi)
-- 🇮🇳 தமிழ் (Tamil)
-- 🇮🇳 తెలుగు (Telugu)
-- 🇮🇳 বাংলা (Bengali)
+- English
+- हिंदी (Hindi)
+- தமிழ் (Tamil)
+- తెలుగు (Telugu)
+- বাংলা (Bengali)
 
 Both UI and voice support for all languages.
 
-## 📊 Architecture
+## Architecture
 
 ### Offline-First Design
 
@@ -376,15 +376,15 @@ Local AI Model (Gemma/Phi-3)
 Response
 ```
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - NCERT for public domain textbooks
 - Vosk for offline speech recognition
@@ -392,13 +392,13 @@ MIT License - see [LICENSE](LICENSE) for details.
 - llama.cpp for efficient inference
 - The open-source community
 
-## 📞 Support
+## Support
 
 - 📧 Email: support@vidyutbandhu.org
 - 💬 Discord: [Join our community](https://discord.gg/vidyutbandhu)
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/vidyut-bandhu/issues)
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Support for more Indian languages (Kannada, Malayalam, Marathi)
 - [ ] Offline video lessons
@@ -409,6 +409,6 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**Built with ❤️ for rural education in India**
+**Built with love for rural education in India**
 
 *"Empowering every student, everywhere, even offline"*
