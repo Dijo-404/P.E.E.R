@@ -112,66 +112,122 @@ peer/
 
 ### Prerequisites
 
-- Node.js 18+ and pnpm 8+
-- For mobile: Android Studio or Xcode
-- For ESP32: Arduino IDE with ESP32 support
+- Node.js 18+ and pnpm 8+ (global install recommended)
+- Docker & Docker Compose (for the Admin portal)
+- Android Studio or Xcode (for the mobile app)
+- Arduino IDE with ESP32 board support (for firmware)
 
-### Installation
+### Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/peer.git
 cd peer
 
-# Install dependencies
+# Install workspace dependencies
 pnpm install
-
-# Build all packages
-pnpm build
 ```
 
-### Running the Web App
+### Environment variables
+
+Create a `.env` file in `apps/admin` (or export the variables in your shell) with the database connection string:
+
+```dotenv
+POSTGRES_USER=vidyut
+POSTGRES_PASSWORD=your_secure_password   # set this before running Docker
+POSTGRES_DB=vidyut_admin
+DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$POSTGRES_DB
+```
+
+### Build all packages
 
 ```bash
-# Development mode
+pnpm build   # builds web, mobile, shared, and other packages
+```
+
+### Seed the Admin database
+
+```bash
+cd apps/admin
+# Create tables
+pnpm prisma db push
+# Populate with an admin/teacher user (seed script)
+pnpm prisma db seed   # runs apps/admin/prisma/seed.ts
+```
+
+You can also run the admin portal via Docker (the env vars above are read by `docker-compose.yml`).
+
+### Run the applications
+
+- **Web (development)**
+  ```bash
+  pnpm dev:web
+  ```
+  Open http://localhost:5173
+
+- **Mobile (development)**
+  ```bash
+  cd apps/mobile
+  pnpm start          # starts Expo dev server
+  pnpm android        # run on Android emulator/device
+  # or
+  pnpm ios            # run on iOS simulator (macOS only)
+  ```
+
+- **Admin portal**
+  ```bash
+  cd apps/admin
+  pnpm dev            # Next.js dev server at http://localhost:3000
+  # or with Docker
+  docker-compose up -d
+  ```
+
+### Install AI models
+
+The repository does not ship the large AI models. After the initial setup, run the helper script to download them:
+
+```bash
+./scripts/download-models.sh
+```
+
+- **Web**: downloads the Gemma‑2B 4‑bit GGUF model into `apps/web/public/models/`
+- **Speech**: downloads Vosk language models into `apps/web/public/models/` (English shown, other languages available)
+- **Mobile**: the Phi‑3‑mini ONNX model must be downloaded manually from HuggingFace and placed in `apps/mobile/assets/models/`.
+
+Once the models are in place, the applications can run fully offline.
+
+### Optional: Deploy to a Raspberry Pi (Rural school scenario)
+
+Follow the steps in `docs/DEPLOYMENT.md` for a headless Pi setup.
+
+## Running the Application
+
+The following commands start each component in development mode. Ensure you have completed the **Setup**, **Environment variables**, **Build**, and **Seed** steps described above.
+
+### Web App
+```bash
 pnpm dev:web
-
-# Production build
-pnpm build:web
-
-# Preview production build
-cd apps/web && pnpm preview
 ```
+Open your browser at `http://localhost:5173`.
 
-The app will be available at `http://localhost:5173`
-
-### Running the Mobile App
-
+### Mobile App
 ```bash
-# Start Expo development server
-cd apps/mobile && pnpm start
-
-# Scan QR code with Expo Go app on your device
-# Or run on emulator/simulator:
-
-# Run on Android
-cd apps/mobile && pnpm android
-
-# Run on iOS (macOS only)
-cd apps/mobile && pnpm ios
+cd apps/mobile
+pnpm start          # Starts the Expo development server
+# To run on a device or emulator:
+pnpm android        # Android
+pnpm ios            # iOS (macOS only)
 ```
+Scan the QR code with the Expo Go app or use the emulator.
 
-See [apps/mobile/README.md](apps/mobile/README.md) for detailed mobile app setup.
-
-### Running the Admin Portal
-
+### Admin Portal
 ```bash
-# Development mode
-cd apps/admin && pnpm dev
-
-# Or with Docker
-cd apps/admin && docker-compose up -d
+cd apps/admin
+pnpm dev            # Starts the Next.js dev server at http://localhost:3000
+# Or run via Docker:
+docker-compose up -d
 ```
+Access the admin interface at `http://localhost:3000`.
 
 The admin portal will be available at `http://localhost:3000`
 
