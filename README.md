@@ -1,8 +1,8 @@
-# Vidyut Bandhu
+# P.E.E.R
 
 **Offline-First AI Learning Platform for Rural Schools in India**
 
-Vidyut Bandhu ("Friend of Lightning/Energy") is a complete open-source learning platform designed to work 100% offline after initial setup. It combines local AI inference, peer-to-peer sync, multi-language support, and gamification to empower students in rural areas with limited internet connectivity.
+P.E.E.R ("Peer-to-Peer Education & Energy Resource") is a complete open-source learning platform designed to work 100% offline after initial setup. It combines local AI inference, peer-to-peer sync, multi-language support, and gamification to empower students in rural areas with limited internet connectivity.
 
 ## Features
 
@@ -50,7 +50,7 @@ Vidyut Bandhu ("Friend of Lightning/Energy") is a complete open-source learning 
 ## Project Structure
 
 ```
-vidyut-bandhu/
+peer/
 ├── apps/
 │   ├── web/                    # React + Vite PWA
 │   │   ├── src/
@@ -120,8 +120,8 @@ vidyut-bandhu/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vidyut-bandhu.git
-cd vidyut-bandhu
+git clone https://github.com/yourusername/peer.git
+cd peer
 
 # Install dependencies
 pnpm install
@@ -238,8 +238,8 @@ mkdir -p apps/mobile/assets/models
    sudo apt-get install -y nodejs
    
    # Clone and build
-   git clone https://github.com/yourusername/vidyut-bandhu.git
-   cd vidyut-bandhu
+   git clone https://github.com/yourusername/peer.git
+   cd peer
    npm install -g pnpm
    pnpm install
    pnpm build:web
@@ -394,9 +394,9 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Support
 
-- 📧 Email: support@vidyutbandhu.org
-- 💬 Discord: [Join our community](https://discord.gg/vidyutbandhu)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/vidyut-bandhu/issues)
+- 📧 Email: support@peer.org
+- 💬 Discord: [Join our community](https://discord.gg/peer)
+- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/peer/issues)
 
 ## Roadmap
 
