@@ -28,7 +28,7 @@ export default function Profile() {
                             fontSize: '3rem',
                             margin: '0 auto 1rem',
                         }}>
-                            👤
+
                         </div>
                         <h2 style={{ margin: 0 }}>{user.name}</h2>
                         <p className="text-secondary">Class {user.grade} - Section {user.section}</p>
@@ -55,15 +55,15 @@ export default function Profile() {
                         <h3 className="mb-3">Statistics</h3>
                         <div className="flex flex-col gap-3">
                             <div className="flex items-center justify-between">
-                                <span>⭐ Total Points</span>
+                                <span>Total Points</span>
                                 <strong style={{ color: 'var(--primary)' }}>{user.points}</strong>
                             </div>
                             <div className="flex items-center justify-between">
-                                <span>💎 Knowledge Credits</span>
+                                <span>Knowledge Credits</span>
                                 <strong style={{ color: 'var(--secondary)' }}>{user.credits}</strong>
                             </div>
                             <div className="flex items-center justify-between">
-                                <span>🔥 Current Streak</span>
+                                <span>Current Streak</span>
                                 <strong style={{ color: 'var(--warning)' }}>{user.streak} days</strong>
                             </div>
                         </div>
@@ -72,13 +72,13 @@ export default function Profile() {
                     <div className="card">
                         <h3 className="mb-3">Settings</h3>
                         <button className="btn btn-secondary" style={{ width: '100%', marginBottom: '0.5rem' }}>
-                            🔔 Notifications
+                            Notifications
                         </button>
                         <button className="btn btn-secondary" style={{ width: '100%', marginBottom: '0.5rem' }}>
-                            📱 Sync Devices
+                            Sync Devices
                         </button>
                         <button className="btn btn-secondary" style={{ width: '100%' }}>
-                            🔒 Privacy
+                            Privacy
                         </button>
                     </div>
                 </div>

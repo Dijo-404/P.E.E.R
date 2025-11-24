@@ -1,6 +1,6 @@
 # Quick Start Guide - Vidyut Bandhu
 
-## 🚀 Running Locally (Development)
+## Running Locally (Development)
 
 ### Step 1: Install Dependencies
 
@@ -32,7 +32,7 @@ The app will be available at **http://localhost:5173**
 2. Navigate to `http://localhost:5173`
 3. You should see the Vidyut Bandhu dashboard!
 
-## 📦 Building for Production
+## Building for Production
 
 ### Web PWA Build
 
@@ -84,7 +84,7 @@ git commit -m 'deploy'
 git push -f git@github.com:yourusername/vidyut-bandhu.git main:gh-pages
 ```
 
-## 🏫 Deploying to Rural Schools
+## Deploying to Rural Schools
 
 ### Option 1: Raspberry Pi Server (Recommended)
 
@@ -234,7 +234,7 @@ zip -r vidyut-bandhu-offline.zip vidyut-bandhu-offline/
 2. Distribute to schools
 3. Students extract and run the launcher
 
-## 🔧 Development Workflow
+## Development Workflow
 
 ### Running Individual Packages
 
@@ -268,7 +268,7 @@ cd packages/gamification
 pnpm test
 ```
 
-## 📱 Installing the PWA
+## Installing the PWA
 
 ### On Desktop (Chrome/Edge)
 
@@ -293,7 +293,7 @@ pnpm test
 3. Tap "Add to Home Screen"
 4. The app will appear on your home screen
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "Module not found" errors
 
@@ -333,7 +333,7 @@ vite --port 3000
 2. Check that service worker is registered (DevTools → Application → Service Workers)
 3. Clear browser cache and try again
 
-## 🎯 Next Steps After Running
+## Next Steps After Running
 
 1. **Download AI Models** (see README.md for links)
 2. **Add NCERT Content** (process PDFs)
@@ -341,7 +341,7 @@ vite --port 3000
 4. **Test Offline Mode** (disconnect internet, verify it works)
 5. **Set Up ESP32** (optional, for hardware reminders)
 
-## 📞 Need Help?
+## Need Help?
 
 - Check the main [README.md](../README.md) for detailed documentation
 - Review the [walkthrough.md](/.gemini/antigravity/brain/443f9210-6631-4359-ba66-0208d9293fac/walkthrough.md) for architecture details
@@ -366,4 +366,4 @@ cd apps/web && vercel     # Deploy to Vercel
 cd apps/web && netlify    # Deploy to Netlify
 ```
 
-Happy coding! 🚀
+Happy coding!

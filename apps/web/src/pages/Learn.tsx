@@ -35,7 +35,7 @@ export default function Learn() {
 
     return (
         <div className="fade-in">
-            <h1 className="mb-3">AI Learning Assistant 🤖</h1>
+            <h1 className="mb-3">AI Learning Assistant</h1>
             <p className="text-secondary mb-4">Ask me anything about your lessons!</p>
 
             <div className="grid grid-2 gap-3">
@@ -98,7 +98,7 @@ export default function Learn() {
                                     onClick={() => setInput(`Explain ${topic} basics`)}
                                     style={{ justifyContent: 'flex-start' }}
                                 >
-                                    📚 {topic}
+                                    {topic}
                                 </button>
                             ))}
                         </div>

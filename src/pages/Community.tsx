@@ -16,7 +16,7 @@ const Community = () => {
       content: "Just completed Chapter 4 on Quadratic Equations! Anyone else finding the factorization method tricky?",
       likes: 24,
       comments: 8,
-      avatar: "👨‍🎓",
+      avatar: "",
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const Community = () => {
       content: "Thanks to EduBridge's offline mode, I can study even during power cuts! 📚✨",
       likes: 42,
       comments: 12,
-      avatar: "👩‍🎓",
+      avatar: "",
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ const Community = () => {
       content: "7-day streak achieved! The daily reminders are really helping me stay consistent.",
       likes: 18,
       comments: 5,
-      avatar: "🎓",
+      avatar: "",
     },
   ];
 

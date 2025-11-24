@@ -1,22 +1,22 @@
-# Vidyut Bandhu ⚡
+# Vidyut Bandhu
 
 **Offline-First AI Learning Platform for Rural Schools in India**
 
 Vidyut Bandhu ("Friend of Lightning/Energy") is a complete open-source learning platform designed to work 100% offline after initial setup. It combines local AI inference, peer-to-peer sync, multi-language support, and gamification to empower students in rural areas with limited internet connectivity.
 
-## 🌟 Features
+## Features
 
 ### Core Capabilities
-- ✅ **100% Offline Operation** - Works without internet after first sync
-- 🤖 **Local AI Tutor** - 4-bit quantized Gemma-2B/Phi-3-mini running on-device
-- 📚 **RAG Pipeline** - Semantic search over NCERT textbooks
-- 🗣️ **Multi-Language** - Hindi, English, Tamil, Telugu, Bengali (speech + text)
-- � **P2P Sync** - Bluetooth & Wi-Fi Direct device-to-device sync
-- 🎮 **Gamification** - Points, badges, streaks, knowledge credits
-- � **Peer Tutoring** - Encrypted chat and micro-tutoring marketplace
-- � **Teacher Dashboard** - Mastery heatmaps and class analytics
-- 📱 **Cross-Platform** - React PWA (web) + React Native (mobile) sharing 90% code
-- ⚡ **ESP32 Integration** - BLE-connected hardware for reminders
+- **100% Offline Operation** - Works without internet after first sync
+- **Local AI Tutor** - 4-bit quantized Gemma-2B/Phi-3-mini running on-device
+- **RAG Pipeline** - Semantic search over NCERT textbooks
+- **Multi-Language** - Hindi, English, Tamil, Telugu, Bengali (speech + text)
+- **P2P Sync** - Bluetooth & Wi-Fi Direct device-to-device sync
+- **Gamification** - Points, badges, streaks, knowledge credits
+- **Peer Tutoring** - Encrypted chat and micro-tutoring marketplace
+- **Teacher Dashboard** - Mastery heatmaps and class analytics
+- **Cross-Platform** - React PWA (web) + React Native (mobile) sharing 90% code
+- **ESP32 Integration** - BLE-connected hardware for reminders
 
 ### Technical Stack
 
@@ -47,7 +47,7 @@ Vidyut Bandhu ("Friend of Lightning/Energy") is a complete open-source learning 
 - ESP32 BLE firmware (Arduino)
 - Vibration motor + LED + light sensor
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 vidyut-bandhu/
@@ -60,9 +60,18 @@ vidyut-bandhu/
 │   │   ├── vite.config.ts     # PWA configuration
 │   │   └── package.json
 │   │
-│   └── mobile/                 # React Native Expo (90% shared code)
-│       ├── App.tsx
-│       ├── app.json
+│   ├── mobile/                 # React Native Expo app
+│   │   ├── App.tsx            # Main app with navigation
+│   │   ├── app.json           # Expo configuration
+│   │   ├── src/screens/       # Mobile screens
+│   │   └── package.json
+│   │
+│   └── admin/                  # Next.js Admin Portal
+│       ├── app/               # Next.js app directory
+│       ├── components/        # Admin UI components
+│       ├── prisma/            # Database schema
+│       ├── Dockerfile         # Docker configuration
+│       ├── docker-compose.yml # Docker Compose setup
 │       └── package.json
 │
 ├── packages/
@@ -140,14 +149,33 @@ The app will be available at `http://localhost:5173`
 
 ```bash
 # Start Expo development server
-pnpm dev:mobile
+cd apps/mobile && pnpm start
+
+# Scan QR code with Expo Go app on your device
+# Or run on emulator/simulator:
 
 # Run on Android
-cd apps/mobile && npx expo run:android
+cd apps/mobile && pnpm android
 
-# Run on iOS
-cd apps/mobile && npx expo run:ios
+# Run on iOS (macOS only)
+cd apps/mobile && pnpm ios
 ```
+
+See [apps/mobile/README.md](apps/mobile/README.md) for detailed mobile app setup.
+
+### Running the Admin Portal
+
+```bash
+# Development mode
+cd apps/admin && pnpm dev
+
+# Or with Docker
+cd apps/admin && docker-compose up -d
+```
+
+The admin portal will be available at `http://localhost:3000`
+
+See [apps/admin/README.md](apps/admin/README.md) for detailed admin portal setup and Docker deployment.
 
 ### Installing PWA
 

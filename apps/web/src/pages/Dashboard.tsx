@@ -16,17 +16,17 @@ export default function Dashboard() {
     ]);
 
     const [badges, setBadges] = useState([
-        { id: '1', name: 'First Steps', icon: '👣', earned: true },
-        { id: '2', name: 'Week Warrior', icon: '🔥', earned: true },
-        { id: '3', name: 'Math Master', icon: '🧮', earned: false },
-        { id: '4', name: 'Helpful Friend', icon: '🤝', earned: false },
+        { id: '1', name: 'First Steps', icon: '', earned: true },
+        { id: '2', name: 'Week Warrior', icon: '', earned: true },
+        { id: '3', name: 'Math Master', icon: '', earned: false },
+        { id: '4', name: 'Helpful Friend', icon: '', earned: false },
     ]);
 
     return (
         <div className="fade-in">
             <div className="flex items-center justify-between mb-4">
                 <div>
-                    <h1>Welcome back, Student! 👋</h1>
+                    <h1>Welcome back, Student!</h1>
                     <p className="text-secondary mt-1">Ready to continue your learning journey?</p>
                 </div>
             </div>
@@ -39,7 +39,7 @@ export default function Dashboard() {
                             <p style={{ opacity: 0.9, marginBottom: '0.5rem' }}>Total Points</p>
                             <h2 style={{ fontSize: '2.5rem', margin: 0 }}>{stats.points}</h2>
                         </div>
-                        <span style={{ fontSize: '3rem' }}>⭐</span>
+                        <span style={{ fontSize: '3rem' }}></span>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@ export default function Dashboard() {
                             <p style={{ opacity: 0.9, marginBottom: '0.5rem' }}>Current Streak</p>
                             <h2 style={{ fontSize: '2.5rem', margin: 0 }}>{stats.streak} days</h2>
                         </div>
-                        <span style={{ fontSize: '3rem' }}>🔥</span>
+                        <span style={{ fontSize: '3rem' }}></span>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@ export default function Dashboard() {
                             <p className="text-secondary mb-1">Mastery Score</p>
                             <h2 style={{ color: 'var(--primary)', margin: 0 }}>{stats.masteryScore}%</h2>
                         </div>
-                        <span style={{ fontSize: '3rem' }}>📈</span>
+                        <span style={{ fontSize: '3rem' }}></span>
                     </div>
                     <div style={{ marginTop: '1rem', height: '8px', backgroundColor: 'var(--background)', borderRadius: '4px', overflow: 'hidden' }}>
                         <div style={{ width: `${stats.masteryScore}%`, height: '100%', backgroundColor: 'var(--primary)', transition: 'width 0.3s ease' }} />
@@ -72,7 +72,7 @@ export default function Dashboard() {
                             <p className="text-secondary mb-1">Completed Lessons</p>
                             <h2 style={{ color: 'var(--secondary)', margin: 0 }}>{stats.completedLessons}</h2>
                         </div>
-                        <span style={{ fontSize: '3rem' }}>✅</span>
+                        <span style={{ fontSize: '3rem' }}></span>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ export default function Dashboard() {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                     <span style={{ fontSize: '1.5rem' }}>
-                                        {activity.subject === 'math' ? '📐' : '🔬'}
+                                        {activity.subject === 'math' ? '' : ''}
                                     </span>
                                     <div>
                                         <h4 style={{ margin: 0, marginBottom: '0.25rem' }}>{activity.title}</h4>
@@ -124,7 +124,7 @@ export default function Dashboard() {
                                             Grade: {activity.grade}
                                         </p>
                                     </div>
-                                    <span style={{ fontSize: '1.5rem' }}>→</span>
+                                    <span style={{ fontSize: '1.5rem' }}></span>
                                 </div>
                             </div>
                         </Link>

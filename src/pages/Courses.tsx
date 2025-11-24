@@ -15,7 +15,7 @@ const Courses = () => {
       progress: 67,
       chapters: 12,
       completed: 8,
-      thumbnail: "📐",
+      thumbnail: "",
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const Courses = () => {
       progress: 45,
       chapters: 15,
       completed: 7,
-      thumbnail: "🔬",
+      thumbnail: "",
     },
     {
       id: 3,
@@ -33,7 +33,7 @@ const Courses = () => {
       progress: 30,
       chapters: 10,
       completed: 3,
-      thumbnail: "📚",
+      thumbnail: "",
     },
   ];
 

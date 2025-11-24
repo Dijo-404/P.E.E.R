@@ -1,4 +1,4 @@
-import { Circle } from "lucide-react";
+import { Circle, User } from "lucide-react";
 
 type SyncStatus = "synced" | "syncing" | "offline";
 
@@ -84,7 +84,7 @@ export const SyncStatusRing = ({ status, size = 80 }: SyncStatusRingProps) => {
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-16 h-16 rounded-full bg-card border-2 border-border flex items-center justify-center text-2xl">
-          👤
+          <User className="h-8 w-8 text-foreground" />
         </div>
       </div>
       <style>{`

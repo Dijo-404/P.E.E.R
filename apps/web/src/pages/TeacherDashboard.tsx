@@ -20,7 +20,7 @@ export default function TeacherDashboard() {
 
     return (
         <div className="fade-in">
-            <h1 className="mb-3">Teacher Dashboard 👨‍🏫</h1>
+            <h1 className="mb-3">Teacher Dashboard</h1>
             <p className="text-secondary mb-4">Class {classData.grade} - Section {classData.section}</p>
 
             <div className="grid grid-3 mb-4">
@@ -40,7 +40,7 @@ export default function TeacherDashboard() {
 
             <div className="grid grid-2 gap-3">
                 <div className="card">
-                    <h3 className="mb-3">🏆 Top Performers</h3>
+                    <h3 className="mb-3">Top Performers</h3>
                     {topPerformers.map((student, idx) => (
                         <div
                             key={idx}
@@ -59,7 +59,7 @@ export default function TeacherDashboard() {
                                     </p>
                                 </div>
                                 <span style={{ fontSize: '2rem' }}>
-                                    {idx === 0 ? '🥇' : idx === 1 ? '🥈' : '🥉'}
+                                    {idx === 0 ? '1st' : idx === 1 ? '2nd' : '3rd'}
                                 </span>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ export default function TeacherDashboard() {
                 </div>
 
                 <div className="card">
-                    <h3 className="mb-3">⚠️ Needs Attention</h3>
+                    <h3 className="mb-3">Needs Attention</h3>
                     {needsAttention.map((student, idx) => (
                         <div
                             key={idx}
@@ -88,7 +88,7 @@ export default function TeacherDashboard() {
             </div>
 
             <div className="card mt-4">
-                <h3 className="mb-3">📊 Mastery Heatmap</h3>
+                <h3 className="mb-3">Mastery Heatmap</h3>
                 <p className="text-secondary">Visual representation of class performance across topics</p>
                 <div style={{
                     marginTop: '1rem',

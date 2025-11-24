@@ -27,7 +27,7 @@ export default function Chat() {
 
     return (
         <div className="fade-in">
-            <h1 className="mb-3">Peer Chat & Tutoring 💬</h1>
+            <h1 className="mb-3">Peer Chat & Tutoring</h1>
             <p className="text-secondary mb-4">Connect with classmates and help each other learn</p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '1.5rem', height: '600px' }}>
@@ -59,7 +59,7 @@ export default function Chat() {
                         >
                             <div className="flex items-center justify-between mb-1">
                                 <div className="flex items-center gap-2">
-                                    <span style={{ fontSize: '1.5rem' }}>👤</span>
+                                    <span style={{ fontSize: '1.5rem' }}></span>
                                     <h4 style={{ margin: 0, fontSize: '1rem' }}>{conv.name}</h4>
                                     {conv.online && (
                                         <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--success)' }} />
@@ -93,11 +93,11 @@ export default function Chat() {
                 <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                     <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
                         <div className="flex items-center gap-2">
-                            <span style={{ fontSize: '2rem' }}>👤</span>
+                            <span style={{ fontSize: '2rem' }}></span>
                             <div>
                                 <h3 style={{ margin: 0 }}>{selectedChat.name}</h3>
                                 <p className="text-secondary" style={{ fontSize: '0.875rem', margin: 0 }}>
-                                    {selectedChat.online ? '🟢 Online' : '⚫ Offline'}
+                                    {selectedChat.online ? 'Online' : 'Offline'}
                                 </p>
                             </div>
                         </div>

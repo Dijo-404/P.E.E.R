@@ -1,0 +1,18 @@
+{
+    "name": "@vidyut/utils",
+    "version": "1.0.0",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": "./src/index.ts"
+    },
+    "scripts": {
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "date-fns": "^3.0.6"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.3"
+    }
+}

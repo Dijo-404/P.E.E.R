@@ -19,10 +19,10 @@ export default function Layout() {
     }, []);
 
     const navItems = [
-        { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-        { path: '/learn', label: 'Learn', icon: '📚' },
-        { path: '/chat', label: 'Chat', icon: '💬' },
-        { path: '/profile', label: 'Profile', icon: '👤' },
+        { path: '/dashboard', label: 'Dashboard', icon: '' },
+        { path: '/learn', label: 'Learn', icon: '' },
+        { path: '/chat', label: 'Chat', icon: '' },
+        { path: '/profile', label: 'Profile', icon: '' },
     ];
 
     return (
@@ -39,7 +39,7 @@ export default function Layout() {
             }}>
                 <div className="container flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <span style={{ fontSize: '2rem' }}>⚡</span>
+                        <span style={{ fontSize: '2rem' }}></span>
                         <h1 style={{ fontSize: '1.5rem', margin: 0 }}>Vidyut Bandhu</h1>
                     </div>
 
@@ -53,7 +53,7 @@ export default function Layout() {
                             fontSize: '0.875rem',
                             fontWeight: 500,
                         }}>
-                            <span>{isOnline ? '🟢' : '🔴'}</span>
+                            <span></span>
                             <span>{isOnline ? 'Online' : 'Offline'}</span>
                         </div>
                     </div>

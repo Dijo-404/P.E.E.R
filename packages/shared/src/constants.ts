@@ -11,11 +11,11 @@ export const LANGUAGES = {
 } as const;
 
 export const SUBJECTS = {
-    math: { name: 'Mathematics', icon: '📐' },
-    science: { name: 'Science', icon: '🔬' },
-    english: { name: 'English', icon: '📚' },
-    hindi: { name: 'Hindi', icon: '📖' },
-    social_studies: { name: 'Social Studies', icon: '🌍' },
+    math: { name: 'Mathematics', icon: '' },
+    science: { name: 'Science', icon: '' },
+    english: { name: 'English', icon: '' },
+    hindi: { name: 'Hindi', icon: '' },
+    social_studies: { name: 'Social Studies', icon: '' },
 } as const;
 
 export const GRADES = [6, 7, 8, 9, 10] as const;
@@ -37,42 +37,42 @@ export const BADGES = [
         id: 'first_steps',
         name: 'First Steps',
         description: 'Complete your first lesson',
-        icon: '👣',
+        icon: '',
         criteria: { type: 'custom' as const, threshold: 1 },
     },
     {
         id: 'math_master',
         name: 'Math Master',
         description: 'Achieve mastery in 10 math topics',
-        icon: '🧮',
+        icon: '',
         criteria: { type: 'mastery' as const, threshold: 10, subject: 'math' as const },
     },
     {
         id: 'science_explorer',
         name: 'Science Explorer',
         description: 'Complete 20 science experiments',
-        icon: '🔬',
+        icon: '',
         criteria: { type: 'mastery' as const, threshold: 20, subject: 'science' as const },
     },
     {
         id: 'helpful_friend',
         name: 'Helpful Friend',
         description: 'Help 5 peers with their doubts',
-        icon: '🤝',
+        icon: '',
         criteria: { type: 'peer_help' as const, threshold: 5 },
     },
     {
         id: 'week_warrior',
         name: 'Week Warrior',
         description: 'Maintain a 7-day learning streak',
-        icon: '🔥',
+        icon: '',
         criteria: { type: 'streak' as const, threshold: 7 },
     },
     {
         id: 'point_collector',
         name: 'Point Collector',
         description: 'Earn 1000 points',
-        icon: '⭐',
+        icon: '',
         criteria: { type: 'points' as const, threshold: 1000 },
     },
 ] as const;
