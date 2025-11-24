@@ -1,25 +1,21 @@
 // ============================================================================
 // Constants for P.E.E.R Platform
 // ============================================================================
-
 export const LANGUAGES = {
     en: { name: 'English', nativeName: 'English' },
     hi: { name: 'Hindi', nativeName: 'हिंदी' },
     ta: { name: 'Tamil', nativeName: 'தமிழ்' },
     te: { name: 'Telugu', nativeName: 'తెలుగు' },
     bn: { name: 'Bengali', nativeName: 'বাংলা' },
-} as const;
-
+};
 export const SUBJECTS = {
     math: { name: 'Mathematics', icon: '' },
     science: { name: 'Science', icon: '' },
     english: { name: 'English', icon: '' },
     hindi: { name: 'Hindi', icon: '' },
     social_studies: { name: 'Social Studies', icon: '' },
-} as const;
-
-export const GRADES = [6, 7, 8, 9, 10] as const;
-
+};
+export const GRADES = [6, 7, 8, 9, 10];
 // Gamification Constants
 export const POINTS = {
     QUIZ_CORRECT: 10,
@@ -30,53 +26,51 @@ export const POINTS = {
     MASTERY_ACHIEVED: 100,
     PEER_TUTORING: 30,
     HELPING_PEER: 15,
-} as const;
-
+};
 export const BADGES = [
     {
         id: 'first_steps',
         name: 'First Steps',
         description: 'Complete your first lesson',
         icon: '',
-        criteria: { type: 'custom' as const, threshold: 1 },
+        criteria: { type: 'custom', threshold: 1 },
     },
     {
         id: 'math_master',
         name: 'Math Master',
         description: 'Achieve mastery in 10 math topics',
         icon: '',
-        criteria: { type: 'mastery' as const, threshold: 10, subject: 'math' as const },
+        criteria: { type: 'mastery', threshold: 10, subject: 'math' },
     },
     {
         id: 'science_explorer',
         name: 'Science Explorer',
         description: 'Complete 20 science experiments',
         icon: '',
-        criteria: { type: 'mastery' as const, threshold: 20, subject: 'science' as const },
+        criteria: { type: 'mastery', threshold: 20, subject: 'science' },
     },
     {
         id: 'helpful_friend',
         name: 'Helpful Friend',
         description: 'Help 5 peers with their doubts',
         icon: '',
-        criteria: { type: 'peer_help' as const, threshold: 5 },
+        criteria: { type: 'peer_help', threshold: 5 },
     },
     {
         id: 'week_warrior',
         name: 'Week Warrior',
         description: 'Maintain a 7-day learning streak',
         icon: '',
-        criteria: { type: 'streak' as const, threshold: 7 },
+        criteria: { type: 'streak', threshold: 7 },
     },
     {
         id: 'point_collector',
         name: 'Point Collector',
         description: 'Earn 1000 points',
         icon: '',
-        criteria: { type: 'points' as const, threshold: 1000 },
+        criteria: { type: 'points', threshold: 1000 },
     },
-] as const;
-
+];
 // AI Model Constants
 export const AI_MODELS = {
     WEB: {
@@ -89,8 +83,7 @@ export const AI_MODELS = {
         path: '/models/phi-3-mini-4k-instruct-q4.onnx',
         contextLength: 4096,
     },
-} as const;
-
+};
 // Speech Model Constants
 export const SPEECH_MODELS = {
     VOSK: {
@@ -107,8 +100,7 @@ export const SPEECH_MODELS = {
         te: '/models/piper/te_IN-medium.onnx',
         bn: '/models/piper/bn_IN-medium.onnx',
     },
-} as const;
-
+};
 // Sync Constants
 export const SYNC_CONFIG = {
     BATCH_SIZE: 100,
@@ -116,20 +108,17 @@ export const SYNC_CONFIG = {
     RETRY_DELAY: 1000, // ms
     BLUETOOTH_MTU: 512, // bytes
     WIFI_DIRECT_CHUNK_SIZE: 8192, // bytes
-} as const;
-
+};
 // Database Constants
 export const DB_VERSION = 1;
 export const DB_NAME = 'peer_learning.db';
-
 // API Endpoints (for when internet is available)
 export const API_ENDPOINTS = {
     SYNC: '/api/sync',
     CONTENT: '/api/content',
     USERS: '/api/users',
     ANALYTICS: '/api/analytics',
-} as const;
-
+};
 // ESP32 Constants
 export const ESP32_CONFIG = {
     SERVICE_UUID: '4fafc201-1fb5-459e-8fcc-c5c9c331914b',
@@ -137,4 +126,4 @@ export const ESP32_CONFIG = {
     REMINDER_TIMES_DEFAULT: ['08:00', '16:00', '20:00'],
     VIBRATION_DURATION: 500, // ms
     LED_BLINK_DURATION: 1000, // ms
-} as const;
+};

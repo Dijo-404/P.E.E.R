@@ -26,7 +26,7 @@ export async function initializeBadges(): Promise<void> {
                     badge.icon,
                     badge.criteria.type,
                     badge.criteria.threshold,
-                    badge.criteria.subject || null,
+                    'subject' in badge.criteria ? badge.criteria.subject : null,
                     Date.now(),
                 ]
             );
@@ -100,7 +100,7 @@ export async function awardBadge(userId: string, badgeId: string): Promise<Badge
 
     return {
         ...badge,
-        earnedAt: new Date(earnedAt),
+        earnedAt: new Date(earnedAt).toISOString(),
     };
 }
 
@@ -129,7 +129,7 @@ export async function getUserBadges(userId: string): Promise<Badge[]> {
             threshold: badge.criteria_threshold,
             subject: badge.criteria_subject,
         },
-        earnedAt: new Date(badge.earned_at),
+        earnedAt: new Date(badge.earned_at).toISOString(),
     }));
 }
 
@@ -179,7 +179,7 @@ async function checkMasteryCriteria(
     return (result?.count || 0) >= threshold;
 }
 
-async function checkStreakCriteria(userId: string, threshold: number): Promise<boolean> {
+async function checkStreakCriteria(_userId: string, _threshold: number): Promise<boolean> {
     // Would use calculateDailyStreak from points-engine
     // For now, simplified check
     return false; // Placeholder

@@ -24,7 +24,12 @@ export async function extractTextFromPDF(
     metadata?: Partial<ExtractedText['metadata']>
 ): Promise<ExtractedText> {
     try {
-        const data = await pdf(pdfBuffer);
+        // Convert ArrayBuffer to Buffer if needed
+        const buffer = pdfBuffer instanceof ArrayBuffer
+            ? Buffer.from(pdfBuffer)
+            : pdfBuffer;
+
+        const data = await pdf(buffer);
 
         return {
             text: data.text,

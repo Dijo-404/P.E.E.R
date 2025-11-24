@@ -4,8 +4,6 @@
 
 import * as Y from 'yjs';
 import { IndexeddbPersistence } from 'y-indexeddb';
-import type { SyncLog } from '@vidyut/shared';
-import { generateId } from '@vidyut/shared';
 
 export class YjsProvider {
     private docs: Map<string, Y.Doc> = new Map();
@@ -48,14 +46,14 @@ export class YjsProvider {
      * Get a shared map (for key-value data)
      */
     getSharedMap<T = any>(docName: string, mapName: string): Y.Map<T> {
-        return this.getSharedType(docName, mapName, Y.Map);
+        return this.getSharedType(docName, mapName, Y.Map) as Y.Map<T>;
     }
 
     /**
      * Get a shared array (for ordered data)
      */
     getSharedArray<T = any>(docName: string, arrayName: string): Y.Array<T> {
-        return this.getSharedType(docName, arrayName, Y.Array);
+        return this.getSharedType(docName, arrayName, Y.Array) as Y.Array<T>;
     }
 
     /**
@@ -68,7 +66,7 @@ export class YjsProvider {
     /**
      * Sync document state with another device
      */
-    async syncWithDevice(docName: string, deviceId: string, stateVector: Uint8Array): Promise<Uint8Array> {
+    async syncWithDevice(docName: string, _deviceId: string, stateVector: Uint8Array): Promise<Uint8Array> {
         const doc = this.getDocument(docName);
         const diff = Y.encodeStateAsUpdate(doc, stateVector);
         return diff;

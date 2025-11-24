@@ -1,13 +1,8 @@
-// ============================================================================
-// Core Types for P.E.E.R Platform
-// ============================================================================
-
-// User & Authentication
 export interface User {
     id: string;
     name: string;
     role: 'student' | 'teacher' | 'admin';
-    grade?: number; // For students
+    grade?: number;
     language: Language;
     avatar?: string;
     points?: number;
@@ -23,7 +18,6 @@ export interface User {
     createdAt?: Date;
     lastSyncAt?: Date;
 }
-
 export interface Student extends User {
     role: 'student';
     grade: number;
@@ -33,18 +27,14 @@ export interface Student extends User {
     knowledgeCredits: number;
     badges: Badge[];
 }
-
 export interface Teacher extends User {
     role: 'teacher';
     subjects: Subject[];
     grades: number[];
     schoolId?: string;
 }
-
-// Content & Learning
 export type Subject = 'math' | 'science' | 'english' | 'hindi' | 'social_studies';
-export type Language = 'en' | 'hi' | 'ta' | 'te' | 'bn'; // English, Hindi, Tamil, Telugu, Bengali
-
+export type Language = 'en' | 'hi' | 'ta' | 'te' | 'bn';
 export interface Content {
     id: string;
     title: string;
@@ -52,13 +42,12 @@ export interface Content {
     grade: number;
     chapter: number;
     section: string;
-    content: string; // Markdown or plain text
-    embeddings?: number[]; // Quantized embeddings for RAG
+    content: string;
+    embeddings?: number[];
     language: Language;
     createdAt: Date;
     updatedAt: Date;
 }
-
 export interface Course {
     id: string;
     title: string;
@@ -69,7 +58,6 @@ export interface Course {
     completedLessons: number;
     tags: string[];
 }
-
 export interface Activity {
     id: string;
     title: string;
@@ -81,33 +69,29 @@ export interface Activity {
     progress?: number;
     status: 'completed' | 'in-progress' | 'not-started';
 }
-
 export interface Question {
     id: string;
     contentId: string;
     question: string;
-    options?: string[]; // For MCQ
+    options?: string[];
     correctAnswer: string;
     explanation: string;
     difficulty: 'easy' | 'medium' | 'hard';
     points: number;
 }
-
-// Progress & Learning Analytics
 export interface LearningProgress {
     id: string;
     userId: string;
     contentId: string;
     status: 'not_started' | 'in_progress' | 'completed' | 'mastered';
-    timeSpent: number; // in seconds
+    timeSpent: number;
     attemptsCount: number;
     correctAnswers: number;
     totalQuestions: number;
-    masteryScore: number; // 0-100
+    masteryScore: number;
     lastAccessedAt: Date;
     completedAt?: Date;
 }
-
 export interface QuizAttempt {
     id: string;
     userId: string;
@@ -117,8 +101,6 @@ export interface QuizAttempt {
     timeSpent: number;
     attemptedAt: Date;
 }
-
-// Gamification
 export interface Badge {
     id: string;
     name: string;
@@ -130,13 +112,11 @@ export interface Badge {
     progress?: number;
     totalRequired?: number;
 }
-
 export interface BadgeCriteria {
     type: 'points' | 'streak' | 'mastery' | 'peer_help' | 'custom';
     threshold: number;
     subject?: Subject;
 }
-
 export interface KnowledgeCredit {
     id: string;
     fromUserId: string;
@@ -146,15 +126,13 @@ export interface KnowledgeCredit {
     metadata?: Record<string, any>;
     createdAt: Date;
 }
-
-// Chat & Peer Tutoring
 export interface ChatMessage {
     id: string;
-    senderId?: string; // Unified sender ID
-    fromUserId?: string; // Deprecated
-    toUserId?: string; // Deprecated
-    text?: string; // Unified text content
-    message?: string; // Deprecated
+    senderId?: string;
+    fromUserId?: string;
+    toUserId?: string;
+    text?: string;
+    message?: string;
     encrypted?: boolean;
     type?: 'text' | 'voice' | 'image';
     metadata?: {
@@ -168,7 +146,6 @@ export interface ChatMessage {
     readAt?: Date;
     isAi?: boolean;
 }
-
 export interface Tutor {
     id: string;
     name: string;
@@ -178,7 +155,6 @@ export interface Tutor {
     isOnline: boolean;
     avatar: string;
 }
-
 export interface TutoringSession {
     id: string;
     tutorId: string;
@@ -192,23 +168,19 @@ export interface TutoringSession {
     rating?: number;
     feedback?: string;
 }
-
-// AI & RAG
 export interface AIConversation {
     id: string;
     userId: string;
     messages: AIMessage[];
-    context?: string; // Retrieved context from RAG
+    context?: string;
     createdAt: Date;
     updatedAt: Date;
 }
-
 export interface AIMessage {
     role: 'user' | 'assistant' | 'system';
     content: string;
     timestamp: Date;
 }
-
 export interface RAGChunk {
     id: string;
     contentId: string;
@@ -221,31 +193,26 @@ export interface RAGChunk {
         page?: number;
     };
 }
-
-// Sync & P2P
 export interface SyncLog {
     id: string;
     userId: string;
     deviceId: string;
     syncType: 'bluetooth' | 'wifi_direct' | 'internet';
-    dataTypes: string[]; // ['progress', 'messages', 'content']
+    dataTypes: string[];
     recordsCount: number;
     status: 'pending' | 'in_progress' | 'completed' | 'failed';
     startedAt: Date;
     completedAt?: Date;
     error?: string;
 }
-
 export interface Device {
     id: string;
     userId: string;
     name: string;
     type: 'web' | 'android' | 'ios';
     lastSeenAt: Date;
-    publicKey?: string; // For E2E encryption
+    publicKey?: string;
 }
-
-// ESP32 Integration
 export interface ESP32Device {
     id: string;
     userId: string;
@@ -256,20 +223,17 @@ export interface ESP32Device {
     lastSyncAt?: Date;
     settings: {
         reminderEnabled: boolean;
-        reminderTimes: string[]; // HH:MM format
-        vibrationIntensity: number; // 0-100
-        ledBrightness: number; // 0-100
+        reminderTimes: string[];
+        vibrationIntensity: number;
+        ledBrightness: number;
     };
 }
-
 export interface ESP32SensorData {
     id: string;
     deviceId: string;
-    lightLevel: number; // 0-1023 (analog reading)
+    lightLevel: number;
     timestamp: Date;
 }
-
-// Teacher Dashboard
 export interface MasteryHeatmap {
     userId: string;
     subject: Subject;
@@ -277,18 +241,17 @@ export interface MasteryHeatmap {
     data: {
         contentId: string;
         title: string;
-        masteryScore: number; // 0-100
+        masteryScore: number;
         studentsCount: number;
         avgTimeSpent: number;
     }[];
 }
-
 export interface ClassAnalytics {
     teacherId: string;
     grade: number;
     section: string;
     totalStudents: number;
-    activeStudents: number; // Active in last 7 days
+    activeStudents: number;
     avgMasteryScore: number;
     topPerformers: Student[];
     needsAttention: Student[];

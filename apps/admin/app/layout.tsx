@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Vidyut Bandhu Admin Portal",
+    title: "P.E.E.R Admin Portal",
     description: "Admin portal for managing students, performance, and assignments",
 };
 

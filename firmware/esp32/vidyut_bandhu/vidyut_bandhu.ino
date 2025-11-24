@@ -1,5 +1,5 @@
 // ============================================================================
-// ESP32 BLE Firmware for Vidyut Bandhu
+// ESP32 BLE Firmware for P.E.E.R
 // Hardware: ESP32 DevKit, LED, Vibration Motor, Light Sensor (LDR)
 // ============================================================================
 

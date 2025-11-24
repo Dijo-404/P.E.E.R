@@ -1,4 +1,4 @@
-# ESP32 Firmware for Vidyut Bandhu
+# ESP32 Firmware for P.E.E.R
 
 ## Hardware Requirements
 
@@ -56,7 +56,7 @@ Go to Sketch → Include Library → Manage Libraries and install:
 ### Pairing with Mobile App
 
 1. Power on the ESP32
-2. Open Vidyut Bandhu mobile app
+2. Open P.E.E.R mobile app
 3. Go to Settings → Pair ESP32 Device
 4. Look for "Vidyut-Bandhu" in the list
 5. Tap to pair

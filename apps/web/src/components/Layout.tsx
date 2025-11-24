@@ -43,7 +43,7 @@ export default function Layout() {
                         <span style={{ fontSize: '2rem', color: 'var(--primary)', display: 'flex', alignItems: 'center' }}>
                             <Zap size={32} fill="currentColor" />
                         </span>
-                        <h1 style={{ fontSize: '1.5rem', margin: 0 }}>Vidyut Bandhu</h1>
+                        <h1 style={{ fontSize: '1.5rem', margin: 0 }}>P.E.E.R</h1>
                     </div>
 
                     <div className="flex items-center gap-2">

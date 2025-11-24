@@ -1,6 +1,6 @@
-# Vidyut Bandhu Admin Portal
+# P.E.E.R Admin Portal
 
-Admin portal for managing students, tracking performance, and assigning assignments for the Vidyut Bandhu learning platform.
+Admin portal for managing students, tracking performance, and assigning assignments for the P.E.E.R learning platform.
 
 ## Features
 

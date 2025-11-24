@@ -1,6 +1,6 @@
-# Vidyut Bandhu Mobile App
+# P.E.E.R Mobile App
 
-React Native mobile application for Vidyut Bandhu, built with Expo and deployable via Expo Go.
+React Native mobile application for P.E.E.R, built with Expo and deployable via Expo Go.
 
 ## Features
 

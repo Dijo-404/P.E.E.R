@@ -108,176 +108,188 @@ peer/
 └── README.md                   # This file
 ```
 
-## Quick Start
+## Installation & Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ and pnpm 8+ (global install recommended)
-- Docker & Docker Compose (for the Admin portal)
-- Android Studio or Xcode (for the mobile app)
-- Arduino IDE with ESP32 board support (for firmware)
+Ensure you have the following installed on your system:
 
-### Setup
+**Required:**
+- **Node.js 18+** - [Download](https://nodejs.org/)
+- **pnpm 8+** - Install globally: `npm install -g pnpm`
+
+**Optional (depending on what you want to run):**
+- **Docker & Docker Compose** - For the Admin portal ([Download](https://www.docker.com/))
+- **Android Studio** - For mobile app on Android ([Download](https://developer.android.com/studio))
+- **Xcode** - For mobile app on iOS (macOS only, [Download](https://developer.apple.com/xcode/))
+- **Arduino IDE with ESP32 support** - For hardware integration ([Download](https://www.arduino.cc/en/software))
+
+### Step 1: Clone and Install Dependencies
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/peer.git
 cd peer
 
-# Install workspace dependencies
+# Install all workspace dependencies
 pnpm install
 ```
 
-### Environment variables
+This will install dependencies for all packages and apps in the monorepo.
 
-Create a `.env` file in `apps/admin` (or export the variables in your shell) with the database connection string:
-
-```dotenv
-POSTGRES_USER=vidyut
-POSTGRES_PASSWORD=your_secure_password   # set this before running Docker
-POSTGRES_DB=vidyut_admin
-DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$POSTGRES_DB
-```
-
-### Build all packages
+### Step 2: Build All Packages
 
 ```bash
-pnpm build   # builds web, mobile, shared, and other packages
+# Build all packages (required before running apps)
+pnpm build
 ```
 
-### Seed the Admin database
+This compiles:
+- Shared packages (`@vidyut/shared`, `@vidyut/db`, etc.)
+- Admin portal (Next.js)
+- Web app (Vite + React)
+
+**Expected output:** All packages should build successfully with exit code 0.
+
+### Step 3: Set Up Admin Portal (Optional)
+
+If you want to use the admin portal for managing students and tracking performance:
+
+#### Option A: Using Docker (Recommended)
+
+1. Create `.env` file in `apps/admin/`:
+   ```bash
+   cd apps/admin
+   cp .env.example .env  # or create manually
+   ```
+
+2. Add the following to `.env`:
+   ```dotenv
+   POSTGRES_USER=vidyut
+   POSTGRES_PASSWORD=your_secure_password
+   POSTGRES_DB=vidyut_admin
+   DATABASE_URL=postgresql://vidyut:your_secure_password@localhost:5432/vidyut_admin
+   ```
+
+3. Start with Docker:
+   ```bash
+   docker-compose up -d
+   ```
+
+#### Option B: Using Local PostgreSQL
+
+1. Install PostgreSQL locally
+2. Create database: `createdb vidyut_admin`
+3. Set up `.env` as above
+4. Run migrations:
+   ```bash
+   cd apps/admin
+   pnpm prisma db push
+   pnpm prisma db seed  # Optional: seed with sample data
+   ```
+
+### Step 4: Download AI Models (Optional)
+
+AI models are **not included** in the repository due to size. Download them if you want offline AI features:
 
 ```bash
-cd apps/admin
-# Create tables
-pnpm prisma db push
-# Populate with an admin/teacher user (seed script)
-pnpm prisma db seed   # runs apps/admin/prisma/seed.ts
-```
-
-You can also run the admin portal via Docker (the env vars above are read by `docker-compose.yml`).
-
-### Run the applications
-
-- **Web (development)**
-  ```bash
-  pnpm dev:web
-  ```
-  Open http://localhost:5173
-
-- **Mobile (development)**
-  ```bash
-  cd apps/mobile
-  pnpm start          # starts Expo dev server
-  pnpm android        # run on Android emulator/device
-  # or
-  pnpm ios            # run on iOS simulator (macOS only)
-  ```
-
-- **Admin portal**
-  ```bash
-  cd apps/admin
-  pnpm dev            # Next.js dev server at http://localhost:3000
-  # or with Docker
-  docker-compose up -d
-  ```
-
-### Install AI models
-
-The repository does not ship the large AI models. After the initial setup, run the helper script to download them:
-
-```bash
+# Run the download script (requires wget and unzip)
+chmod +x scripts/download-models.sh
 ./scripts/download-models.sh
 ```
 
-- **Web**: downloads the Gemma‑2B 4‑bit GGUF model into `apps/web/public/models/`
-- **Speech**: downloads Vosk language models into `apps/web/public/models/` (English shown, other languages available)
-- **Mobile**: the Phi‑3‑mini ONNX model must be downloaded manually from HuggingFace and placed in `apps/mobile/assets/models/`.
+This downloads:
+- **Gemma-2B 4-bit GGUF** (~1.6GB) for web AI inference
+- **Vosk speech models** (~40MB each) for English and Hindi
 
-Once the models are in place, the applications can run fully offline.
+**Note:** Mobile ONNX models (Phi-3-mini) must be downloaded manually from [HuggingFace](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx) and placed in `apps/mobile/assets/models/`.
 
-### Optional: Deploy to a Raspberry Pi (Rural school scenario)
+### Step 5: Run the Applications
 
-Follow the steps in `docs/DEPLOYMENT.md` for a headless Pi setup.
+#### Web App (PWA)
 
-## Running the Application
-
-The following commands start each component in development mode. Ensure you have completed the **Setup**, **Environment variables**, **Build**, and **Seed** steps described above.
-
-### Web App
 ```bash
+# Development mode
 pnpm dev:web
+
+# Production build
+pnpm build:web
+cd apps/web/dist
+python3 -m http.server 8080
 ```
-Open your browser at `http://localhost:5173`.
 
-### Mobile App
-```bash
-cd apps/mobile
-pnpm start          # Starts the Expo development server
-# To run on a device or emulator:
-pnpm android        # Android
-pnpm ios            # iOS (macOS only)
-```
-Scan the QR code with the Expo Go app or use the emulator.
+Open [http://localhost:5173](http://localhost:5173) (dev) or [http://localhost:8080](http://localhost:8080) (prod)
 
-### Admin Portal
-```bash
-cd apps/admin
-pnpm dev            # Starts the Next.js dev server at http://localhost:3000
-# Or run via Docker:
-docker-compose up -d
-```
-Access the admin interface at `http://localhost:3000`.
-
-The admin portal will be available at `http://localhost:3000`
-
-See [apps/admin/README.md](apps/admin/README.md) for detailed admin portal setup and Docker deployment.
-
-### Installing PWA
-
+**Installing as PWA:**
 1. Open the web app in Chrome/Edge
 2. Click the install icon in the address bar
-3. The app will be installed and work offline
+3. The app will work offline after installation
 
-## AI Models Setup
-
-The AI models are **not included** in this repository due to size. Download them separately:
-
-### For Web (llama.cpp WebAssembly)
+#### Mobile App (Expo)
 
 ```bash
-# Create models directory
-mkdir -p apps/web/public/models
+cd apps/mobile
 
-# Download Gemma-2B 4-bit GGUF model
-wget https://huggingface.co/TheBloke/gemma-2b-it-GGUF/resolve/main/gemma-2b-it.Q4_K_M.gguf \
-  -O apps/web/public/models/gemma-2b-it-q4_k_m.gguf
+# Start Expo dev server
+pnpm start
+
+# Run on Android (requires Android Studio/emulator)
+pnpm android
+
+# Run on iOS (macOS only, requires Xcode)
+pnpm ios
 ```
 
-### For Mobile (ONNX Runtime)
+Scan the QR code with **Expo Go** app ([Android](https://play.google.com/store/apps/details?id=host.exp.exponent) | [iOS](https://apps.apple.com/app/expo-go/id982107779)) or use an emulator.
+
+#### Admin Portal
 
 ```bash
-# Create models directory
-mkdir -p apps/mobile/assets/models
+cd apps/admin
 
-# Download Phi-3-mini 4-bit ONNX model
-# Visit: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-onnx
-# Download the quantized INT4 version
+# Development mode
+pnpm dev
+
+# Or with Docker
+docker-compose up -d
 ```
 
-### Speech Models
+Open [http://localhost:3000](http://localhost:3000)
 
+**Default credentials** (if using seed data):
+- Email: `admin@vidyut.org`
+- Password: `admin123`
+
+### Troubleshooting
+
+**Build fails with TypeScript errors:**
 ```bash
-# Vosk models (download for each language)
-# English: https://alphacephei.com/vosk/models/vosk-model-small-en-in-0.4.zip
-# Hindi: https://alphacephei.com/vosk/models/vosk-model-small-hi-0.22.zip
-# Tamil, Telugu, Bengali: Check Vosk website
-
-# Piper TTS models
-# Visit: https://github.com/rhasspy/piper/releases
+# Clean and rebuild
+pnpm clean
+pnpm install
+pnpm build
 ```
 
-## For Rural Schools - Deployment Guide
+**Port already in use:**
+- Web: Change port in `apps/web/vite.config.ts`
+- Admin: Set `PORT=3001` in `.env`
+- Mobile: Expo will automatically find an available port
+
+**Models not downloading:**
+- Ensure `wget` and `unzip` are installed
+- Check internet connection
+- Download manually from the URLs in `scripts/download-models.sh`
+
+**Docker issues:**
+- Ensure Docker daemon is running
+- Check ports 5432 (PostgreSQL) and 3000 (Next.js) are available
+- Run `docker-compose logs` to see error details
+
+---
+
+## Deployment
+
+### For Rural Schools - Deployment Guide
 
 ### Option 1: Raspberry Pi Server
 

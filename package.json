@@ -1,5 +1,5 @@
 {
-  "name": "vidyut-bandhu",
+  "name": "peer",
   "version": "1.0.0",
   "description": "Offline-first AI learning platform for rural schools in India",
   "private": true,
@@ -22,7 +22,7 @@
     "pwa",
     "react-native"
   ],
-  "author": "Vidyut Bandhu Team",
+  "author": "P.E.E.R Team",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.0",

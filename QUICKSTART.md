@@ -1,4 +1,4 @@
-# Quick Start Guide - Vidyut Bandhu
+# Quick Start Guide - P.E.E.R
 
 ## Running Locally (Development)
 
@@ -30,7 +30,7 @@ The app will be available at **http://localhost:5173**
 
 1. Open Chrome or Edge
 2. Navigate to `http://localhost:5173`
-3. You should see the Vidyut Bandhu dashboard!
+3. You should see the P.E.E.R dashboard!
 
 ## Building for Production
 
@@ -81,7 +81,7 @@ cd apps/web/dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:yourusername/vidyut-bandhu.git main:gh-pages
+git push -f git@github.com:yourusername/peer.git main:gh-pages
 ```
 
 ## Deploying to Rural Schools
@@ -108,8 +108,8 @@ sudo apt-get install -y nodejs
 sudo npm install -g pnpm
 
 # 4. Clone the repository
-git clone https://github.com/yourusername/vidyut-bandhu.git
-cd vidyut-bandhu
+git clone https://github.com/yourusername/peer.git
+cd peer
 
 # 5. Install dependencies
 pnpm install
@@ -137,19 +137,19 @@ python3 -m http.server 80
 
 Create a systemd service:
 ```bash
-sudo nano /etc/systemd/system/vidyut-bandhu.service
+sudo nano /etc/systemd/system/peer.service
 ```
 
 Add this content:
 ```ini
 [Unit]
-Description=Vidyut Bandhu Web Server
+Description=P.E.E.R Web Server
 After=network.target
 
 [Service]
 Type=simple
 User=pi
-WorkingDirectory=/home/pi/vidyut-bandhu/apps/web/dist
+WorkingDirectory=/home/pi/peer/apps/web/dist
 ExecStart=/usr/bin/serve -s . -p 80
 Restart=always
 
@@ -159,8 +159,8 @@ WantedBy=multi-user.target
 
 Enable and start:
 ```bash
-sudo systemctl enable vidyut-bandhu
-sudo systemctl start vidyut-bandhu
+sudo systemctl enable peer
+sudo systemctl start peer
 ```
 
 ### Option 2: Android Tablets (Mobile App)
@@ -196,8 +196,8 @@ eas build --platform android
 pnpm build:web
 
 # 2. Create a distribution folder
-mkdir vidyut-bandhu-offline
-cd vidyut-bandhu-offline
+mkdir peer-offline
+cd peer-offline
 
 # 3. Copy built files
 cp -r ../apps/web/dist ./web-app
@@ -213,7 +213,7 @@ chmod +x start.sh
 
 # 5. Create README
 cat > README.txt << 'EOF'
-Vidyut Bandhu - Offline Installation
+P.E.E.R - Offline Installation
 
 1. Double-click start.sh (Linux/Mac) or start.bat (Windows)
 2. Open browser to http://localhost:8080
@@ -226,7 +226,7 @@ EOF
 
 # 6. Zip it up
 cd ..
-zip -r vidyut-bandhu-offline.zip vidyut-bandhu-offline/
+zip -r peer-offline.zip peer-offline/
 ```
 
 **Distribute:**
