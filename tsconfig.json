@@ -1,0 +1,85 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@vidyut/shared": [
+        "./packages/shared/src"
+      ],
+      "@vidyut/db": [
+        "./packages/db/src"
+      ],
+      "@vidyut/sync": [
+        "./packages/sync/src"
+      ],
+      "@vidyut/ai": [
+        "./packages/ai/src"
+      ],
+      "@vidyut/rag": [
+        "./packages/rag/src"
+      ],
+      "@vidyut/speech": [
+        "./packages/speech/src"
+      ],
+      "@vidyut/gamification": [
+        "./packages/gamification/src"
+      ],
+      "@vidyut/p2p": [
+        "./packages/p2p/src"
+      ],
+      "@vidyut/ui": [
+        "./packages/ui/src"
+      ]
+    }
+  },
+  "include": [
+    "packages",
+    "apps"
+  ],
+  "references": [
+    {
+      "path": "./packages/shared"
+    },
+    {
+      "path": "./packages/db"
+    },
+    {
+      "path": "./packages/sync"
+    },
+    {
+      "path": "./packages/ai"
+    },
+    {
+      "path": "./packages/rag"
+    },
+    {
+      "path": "./packages/speech"
+    },
+    {
+      "path": "./packages/gamification"
+    },
+    {
+      "path": "./packages/p2p"
+    },
+    {
+      "path": "./packages/ui"
+    }
+  ]
+}

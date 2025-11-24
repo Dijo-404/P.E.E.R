@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&display=swap");
+/* Noto Sans fonts for Indian language support */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 30 58% 92%;
+    --foreground: 180 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 180 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 50% 15%;
+
+    --primary: 180 100% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 58% 85%;
+    --secondary-foreground: 180 50% 15%;
+
+    --muted: 30 25% 75%;
+    --muted-foreground: 180 30% 35%;
+
+    --accent: 16 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 212 26% 83%;
+    --input: 212 26% 83%;
+    --ring: 216 19% 26%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 180 50% 15%;
+
+    --sidebar-primary: 180 100% 25%;
+
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 16 100% 65%;
+
+    --sidebar-accent-foreground: 0 0% 100%;
+
+    --sidebar-border: 30 25% 75%;
+
+    --sidebar-ring: 180 100% 25%;
+
+    --chart-1: 217 10% 64%;
+
+    --chart-2: 215 20% 65%;
+
+    --chart-3: 215 16% 46%;
+
+    --chart-4: 219 8% 46%;
+
+    --chart-5: 215 19% 34%;
+
+    --sidebar: 210 40% 98%;
+
+    --font-sans: 'DM Sans', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Bengali', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --font-serif: 'Crimson Pro', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+
+    --font-mono: 'SF Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+    --tracking-normal: 0em;
+
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: 180 30% 10%;
+    --foreground: 30 58% 92%;
+
+    --card: 180 25% 15%;
+    --card-foreground: 30 58% 92%;
+
+    --popover: 180 25% 15%;
+    --popover-foreground: 30 58% 92%;
+
+    --primary: 180 100% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 30% 25%;
+    --secondary-foreground: 30 58% 92%;
+
+    --muted: 180 15% 30%;
+    --muted-foreground: 30 40% 70%;
+
+    --accent: 16 100% 65%;
+    --accent-foreground: 180 30% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 215 19% 34%;
+    --input: 215 19% 34%;
+    --ring: 212 26% 83%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 212 26% 83%;
+    --sidebar-primary-foreground: 228 84% 4%;
+    --sidebar-accent: 215 20% 65%;
+    --sidebar-accent-foreground: 228 84% 4%;
+    --sidebar-border: 215 19% 34%;
+    --sidebar-ring: 212 26% 83%;
+    --chart-1: 215 12% 83%;
+    --chart-2: 212 26% 83%;
+    --chart-3: 215 20% 65%;
+    --chart-4: 217 10% 64%;
+    --chart-5: 215 16% 46%;
+    --sidebar: 217 32% 17%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  /* Improve rendering for Indian language scripts */
+  [lang="hi"], [lang="mr"] {
+    font-family: 'Noto Sans Devanagari', 'Noto Sans', var(--font-sans);
+  }
+
+  [lang="ta"] {
+    font-family: 'Noto Sans Tamil', 'Noto Sans', var(--font-sans);
+  }
+
+  [lang="te"] {
+    font-family: 'Noto Sans Telugu', 'Noto Sans', var(--font-sans);
+  }
+
+  [lang="bn"] {
+    font-family: 'Noto Sans Bengali', 'Noto Sans', var(--font-sans);
+  }
+}

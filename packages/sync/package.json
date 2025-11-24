@@ -1,0 +1,20 @@
+{
+    "name": "@vidyut/sync",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "scripts": {
+        "build": "tsc",
+        "clean": "rm -rf dist"
+    },
+    "dependencies": {
+        "@vidyut/shared": "workspace:*",
+        "@vidyut/db": "workspace:*",
+        "yjs": "^13.6.10",
+        "y-indexeddb": "^9.0.12"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.3"
+    }
+}
