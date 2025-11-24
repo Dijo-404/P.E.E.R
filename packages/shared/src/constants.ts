@@ -120,7 +120,7 @@ export const SYNC_CONFIG = {
 
 // Database Constants
 export const DB_VERSION = 1;
-export const DB_NAME = 'vidyut_bandhu.db';
+export const DB_NAME = 'peer_learning.db';
 
 // API Endpoints (for when internet is available)
 export const API_ENDPOINTS = {

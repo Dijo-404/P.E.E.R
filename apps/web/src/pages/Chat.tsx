@@ -1,26 +1,38 @@
 import { useState } from 'react';
+import { MOCK_TUTORS, MOCK_CHAT_HISTORY } from '@vidyut/shared';
 
 export default function Chat() {
-    const [conversations, setConversations] = useState([
-        { id: '1', name: 'Rahul Kumar', lastMessage: 'Can you help with algebra?', unread: 2, online: true },
-        { id: '2', name: 'Priya Sharma', lastMessage: 'Thanks for the explanation!', unread: 0, online: false },
-        { id: '3', name: 'Amit Patel', lastMessage: 'Let\'s study together', unread: 1, online: true },
-    ]);
+    const [conversations] = useState(
+        MOCK_TUTORS.map(tutor => ({
+            id: tutor.id,
+            name: tutor.name,
+            lastMessage: tutor.specialty + ' Tutor',
+            unread: 0,
+            online: tutor.isOnline,
+            avatar: tutor.avatar
+        }))
+    );
 
     const [selectedChat, setSelectedChat] = useState(conversations[0]);
-    const [messages, setMessages] = useState([
-        { id: '1', from: 'Rahul Kumar', content: 'Can you help with algebra?', time: '10:30 AM' },
-        { id: '2', from: 'me', content: 'Sure! What do you need help with?', time: '10:32 AM' },
-    ]);
+    const [messages, setMessages] = useState(
+        MOCK_CHAT_HISTORY.map(msg => ({
+            id: msg.id,
+            from: msg.isAi ? 'AI Assistant' : 'Me',
+            content: msg.text || '',
+            time: new Date(msg.timestamp || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isMe: !msg.isAi
+        }))
+    );
     const [input, setInput] = useState('');
 
     const handleSend = () => {
         if (!input.trim()) return;
         setMessages([...messages, {
             id: Date.now().toString(),
-            from: 'me',
+            from: 'Me',
             content: input,
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            isMe: true
         }]);
         setInput('');
     };
@@ -59,7 +71,7 @@ export default function Chat() {
                         >
                             <div className="flex items-center justify-between mb-1">
                                 <div className="flex items-center gap-2">
-                                    <span style={{ fontSize: '1.5rem' }}></span>
+                                    <img src={conv.avatar} alt={conv.name} style={{ width: '32px', height: '32px', borderRadius: '50%' }} />
                                     <h4 style={{ margin: 0, fontSize: '1rem' }}>{conv.name}</h4>
                                     {conv.online && (
                                         <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--success)' }} />
@@ -93,7 +105,7 @@ export default function Chat() {
                 <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                     <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem', marginBottom: '1rem' }}>
                         <div className="flex items-center gap-2">
-                            <span style={{ fontSize: '2rem' }}></span>
+                            <img src={selectedChat.avatar} alt={selectedChat.name} style={{ width: '48px', height: '48px', borderRadius: '50%' }} />
                             <div>
                                 <h3 style={{ margin: 0 }}>{selectedChat.name}</h3>
                                 <p className="text-secondary" style={{ fontSize: '0.875rem', margin: 0 }}>
@@ -110,11 +122,11 @@ export default function Chat() {
                                 style={{
                                     marginBottom: '1rem',
                                     display: 'flex',
-                                    justifyContent: msg.from === 'me' ? 'flex-end' : 'flex-start',
+                                    justifyContent: msg.isMe ? 'flex-end' : 'flex-start',
                                 }}
                             >
                                 <div style={{ maxWidth: '70%' }}>
-                                    {msg.from !== 'me' && (
+                                    {!msg.isMe && (
                                         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
                                             {msg.from}
                                         </p>
@@ -123,8 +135,8 @@ export default function Chat() {
                                         style={{
                                             padding: '0.75rem 1rem',
                                             borderRadius: '1rem',
-                                            backgroundColor: msg.from === 'me' ? 'var(--primary)' : 'var(--background)',
-                                            color: msg.from === 'me' ? 'white' : 'var(--text-primary)',
+                                            backgroundColor: msg.isMe ? 'var(--primary)' : 'var(--background)',
+                                            color: msg.isMe ? 'white' : 'var(--text-primary)',
                                         }}
                                     >
                                         {msg.content}

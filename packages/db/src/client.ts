@@ -6,6 +6,7 @@ import type { Database as SqlJsDatabase } from 'sql.js';
 import { DB_NAME } from '@vidyut/shared';
 
 export interface DatabaseClient {
+    init(): Promise<void>;
     exec(sql: string, params?: any[]): Promise<any[]>;
     run(sql: string, params?: any[]): Promise<void>;
     get<T>(sql: string, params?: any[]): Promise<T | undefined>;
@@ -91,18 +92,31 @@ export class WebDatabaseClient implements DatabaseClient {
 
         const data = this.db.export();
         const db = await this.openIndexedDB();
-        const tx = db.transaction(['databases'], 'readwrite');
-        const store = tx.objectStore('databases');
-        await store.put({ name: DB_NAME, data });
+
+        return new Promise((resolve, reject) => {
+            const tx = db.transaction(['databases'], 'readwrite');
+            const store = tx.objectStore('databases');
+            const request = store.put({ name: DB_NAME, data });
+
+            request.onsuccess = () => resolve();
+            request.onerror = () => reject(request.error);
+        });
     }
 
     private async loadFromIndexedDB(): Promise<Uint8Array | null> {
         try {
             const db = await this.openIndexedDB();
-            const tx = db.transaction(['databases'], 'readonly');
-            const store = tx.objectStore('databases');
-            const result = await store.get(DB_NAME);
-            return result?.data || null;
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(['databases'], 'readonly');
+                const store = tx.objectStore('databases');
+                const request = store.get(DB_NAME);
+
+                request.onsuccess = () => {
+                    const result = request.result;
+                    resolve(result?.data || null);
+                };
+                request.onerror = () => reject(request.error);
+            });
         } catch {
             return null;
         }
@@ -110,7 +124,7 @@ export class WebDatabaseClient implements DatabaseClient {
 
     private openIndexedDB(): Promise<IDBDatabase> {
         return new Promise((resolve, reject) => {
-            const request = indexedDB.open('VidyutBandhuDB', 1);
+            const request = indexedDB.open('PeerLearningDB', 1);
 
             request.onerror = () => reject(request.error);
             request.onsuccess = () => resolve(request.result);
@@ -140,24 +154,24 @@ export class MobileDatabaseClient implements DatabaseClient {
         console.warn('Mobile database client not fully implemented');
     }
 
-    async exec(sql: string, params: any[] = []): Promise<any[]> {
+    async exec(_sql: string, _params: any[] = []): Promise<any[]> {
         if (!this.db) throw new Error('Database not initialized');
         // return await this.db.execAsync(sql, params);
         return [];
     }
 
-    async run(sql: string, params: any[] = []): Promise<void> {
+    async run(_sql: string, _params: any[] = []): Promise<void> {
         if (!this.db) throw new Error('Database not initialized');
         // await this.db.runAsync(sql, params);
     }
 
-    async get<T>(sql: string, params: any[] = []): Promise<T | undefined> {
+    async get<T>(_sql: string, _params: any[] = []): Promise<T | undefined> {
         if (!this.db) throw new Error('Database not initialized');
         // return await this.db.getFirstAsync(sql, params);
         return undefined;
     }
 
-    async all<T>(sql: string, params: any[] = []): Promise<T[]> {
+    async all<T>(_sql: string, _params: any[] = []): Promise<T[]> {
         if (!this.db) throw new Error('Database not initialized');
         // return await this.db.getAllAsync(sql, params);
         return [];

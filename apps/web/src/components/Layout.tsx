@@ -1,5 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { LayoutDashboard, BookOpen, MessageCircle, User, Wifi, WifiOff, Zap } from 'lucide-react';
 
 export default function Layout() {
     const location = useLocation();
@@ -19,10 +20,10 @@ export default function Layout() {
     }, []);
 
     const navItems = [
-        { path: '/dashboard', label: 'Dashboard', icon: '' },
-        { path: '/learn', label: 'Learn', icon: '' },
-        { path: '/chat', label: 'Chat', icon: '' },
-        { path: '/profile', label: 'Profile', icon: '' },
+        { path: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
+        { path: '/learn', label: 'Learn', icon: <BookOpen size={20} /> },
+        { path: '/chat', label: 'Chat', icon: <MessageCircle size={20} /> },
+        { path: '/profile', label: 'Profile', icon: <User size={20} /> },
     ];
 
     return (
@@ -39,7 +40,9 @@ export default function Layout() {
             }}>
                 <div className="container flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <span style={{ fontSize: '2rem' }}></span>
+                        <span style={{ fontSize: '2rem', color: 'var(--primary)', display: 'flex', alignItems: 'center' }}>
+                            <Zap size={32} fill="currentColor" />
+                        </span>
                         <h1 style={{ fontSize: '1.5rem', margin: 0 }}>Vidyut Bandhu</h1>
                     </div>
 
@@ -53,7 +56,9 @@ export default function Layout() {
                             fontSize: '0.875rem',
                             fontWeight: 500,
                         }}>
-                            <span></span>
+                            <span style={{ display: 'flex', alignItems: 'center' }}>
+                                {isOnline ? <Wifi size={16} /> : <WifiOff size={16} />}
+                            </span>
                             <span>{isOnline ? 'Online' : 'Offline'}</span>
                         </div>
                     </div>
@@ -89,7 +94,7 @@ export default function Layout() {
                                     gap: '0.5rem',
                                 }}
                             >
-                                <span>{item.icon}</span>
+                                <span style={{ display: 'flex', alignItems: 'center' }}>{item.icon}</span>
                                 <span>{item.label}</span>
                             </Link>
                         ))}
@@ -112,7 +117,7 @@ export default function Layout() {
                 marginTop: 'auto',
             }}>
                 <div className="container text-center text-secondary">
-                    <p>© 2024 Vidyut Bandhu - Empowering Rural Education</p>
+                    <p>© 2024 P.E.E.R - Empowering Rural Education</p>
                     <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
                         Offline-first AI Learning Platform
                     </p>

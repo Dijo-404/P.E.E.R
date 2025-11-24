@@ -9,7 +9,18 @@ export interface User {
     role: 'student' | 'teacher' | 'admin';
     grade?: number; // For students
     language: Language;
-    createdAt: Date;
+    avatar?: string;
+    points?: number;
+    streak?: number;
+    level?: number;
+    masteryScore?: number;
+    completedLessons?: number;
+    preferences?: {
+        language: Language;
+        notifications: boolean;
+        offlineMode: boolean;
+    };
+    createdAt?: Date;
     lastSyncAt?: Date;
 }
 
@@ -46,6 +57,29 @@ export interface Content {
     language: Language;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface Course {
+    id: string;
+    title: string;
+    description: string;
+    thumbnail: string;
+    progress: number;
+    totalLessons: number;
+    completedLessons: number;
+    tags: string[];
+}
+
+export interface Activity {
+    id: string;
+    title: string;
+    type: 'quiz' | 'lesson' | 'reading';
+    subject: string;
+    timestamp: string;
+    score?: number;
+    maxScore?: number;
+    progress?: number;
+    status: 'completed' | 'in-progress' | 'not-started';
 }
 
 export interface Question {
@@ -90,8 +124,11 @@ export interface Badge {
     name: string;
     description: string;
     icon: string;
-    criteria: BadgeCriteria;
-    earnedAt?: Date;
+    criteria?: BadgeCriteria;
+    earnedAt?: string | null;
+    category?: 'engagement' | 'achievement' | 'consistency';
+    progress?: number;
+    totalRequired?: number;
 }
 
 export interface BadgeCriteria {
@@ -113,19 +150,33 @@ export interface KnowledgeCredit {
 // Chat & Peer Tutoring
 export interface ChatMessage {
     id: string;
-    fromUserId: string;
-    toUserId: string;
-    message: string;
-    encrypted: boolean;
-    type: 'text' | 'voice' | 'image';
+    senderId?: string; // Unified sender ID
+    fromUserId?: string; // Deprecated
+    toUserId?: string; // Deprecated
+    text?: string; // Unified text content
+    message?: string; // Deprecated
+    encrypted?: boolean;
+    type?: 'text' | 'voice' | 'image';
     metadata?: {
         questionId?: string;
         contentId?: string;
         voiceUrl?: string;
     };
-    sentAt: Date;
+    timestamp?: string;
+    sentAt?: Date;
     deliveredAt?: Date;
     readAt?: Date;
+    isAi?: boolean;
+}
+
+export interface Tutor {
+    id: string;
+    name: string;
+    specialty: string;
+    rating: number;
+    reviews: number;
+    isOnline: boolean;
+    avatar: string;
 }
 
 export interface TutoringSession {

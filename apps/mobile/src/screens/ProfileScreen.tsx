@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { User, Footprints, Flame, Calculator, Star, ChevronRight, Settings, Bell, Shield, Info, LogOut } from 'lucide-react-native';
 
 export default function ProfileScreen() {
     return (
@@ -8,7 +9,7 @@ export default function ProfileScreen() {
             <ScrollView style={styles.scrollView}>
                 <View style={styles.profileHeader}>
                     <View style={styles.avatar}>
-                        <Text style={styles.avatarText}></Text>
+                        <User size={40} color="#6366f1" />
                     </View>
                     <Text style={styles.name}>Student Name</Text>
                     <Text style={styles.class}>Class 6 - Section A</Text>
@@ -37,19 +38,19 @@ export default function ProfileScreen() {
                     <Text style={styles.sectionTitle}>Achievements</Text>
                     <View style={styles.badgeGrid}>
                         <View style={styles.badge}>
-                            <Text style={styles.badgeIcon}></Text>
+                            <Footprints size={32} color="#2563eb" style={styles.badgeIcon} />
                             <Text style={styles.badgeName}>First Steps</Text>
                         </View>
                         <View style={styles.badge}>
-                            <Text style={styles.badgeIcon}></Text>
+                            <Flame size={32} color="#ef4444" style={styles.badgeIcon} />
                             <Text style={styles.badgeName}>Week Warrior</Text>
                         </View>
                         <View style={styles.badge}>
-                            <Text style={styles.badgeIcon}></Text>
+                            <Calculator size={32} color="#16a34a" style={styles.badgeIcon} />
                             <Text style={styles.badgeName}>Math Master</Text>
                         </View>
                         <View style={styles.badge}>
-                            <Text style={styles.badgeIcon}></Text>
+                            <Star size={32} color="#eab308" style={styles.badgeIcon} />
                             <Text style={styles.badgeName}>Star Learner</Text>
                         </View>
                     </View>
@@ -58,20 +59,47 @@ export default function ProfileScreen() {
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Settings</Text>
                     <TouchableOpacity style={styles.menuItem}>
-                        <Text style={styles.menuItemText}>Language Preferences</Text>
-                        <Text style={styles.menuItemArrow}>›</Text>
+                        <View style={styles.menuItemLeft}>
+                            <Settings size={20} color="#6b7280" />
+                            <Text style={styles.menuItemText}>Language Preferences</Text>
+                        </View>
+                        <ChevronRight size={20} color="#9ca3af" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuItem}>
-                        <Text style={styles.menuItemText}>Notifications</Text>
-                        <Text style={styles.menuItemArrow}>›</Text>
+                        <View style={styles.menuItemLeft}>
+                            <View style={[styles.iconContainer, { backgroundColor: '#dcfce7' }]}>
+                                <View style={[styles.statusDot, { backgroundColor: '#22c55e' }]} />
+                            </View>
+                            <Text style={styles.menuItemText}>P.E.E.R Device: Connected</Text>
+                        </View>
+                        <ChevronRight size={20} color="#9ca3af" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuItem}>
-                        <Text style={styles.menuItemText}>Privacy</Text>
-                        <Text style={styles.menuItemArrow}>›</Text>
+                        <View style={styles.menuItemLeft}>
+                            <Bell size={20} color="#6b7280" />
+                            <Text style={styles.menuItemText}>Notifications</Text>
+                        </View>
+                        <ChevronRight size={20} color="#9ca3af" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.menuItem}>
-                        <Text style={styles.menuItemText}>About</Text>
-                        <Text style={styles.menuItemArrow}>›</Text>
+                        <View style={styles.menuItemLeft}>
+                            <Shield size={20} color="#6b7280" />
+                            <Text style={styles.menuItemText}>Privacy</Text>
+                        </View>
+                        <ChevronRight size={20} color="#9ca3af" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.menuItem}>
+                        <View style={styles.menuItemLeft}>
+                            <Info size={20} color="#6b7280" />
+                            <Text style={styles.menuItemText}>About</Text>
+                        </View>
+                        <ChevronRight size={20} color="#9ca3af" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.menuItem, styles.logoutButton]}>
+                        <View style={styles.menuItemLeft}>
+                            <LogOut size={20} color="#ef4444" />
+                            <Text style={[styles.menuItemText, { color: '#ef4444' }]}>Log Out</Text>
+                        </View>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -91,6 +119,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#6366f1',
         padding: 32,
         alignItems: 'center',
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
     },
     avatar: {
         width: 80,
@@ -100,9 +130,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 12,
-    },
-    avatarText: {
-        fontSize: 40,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 8,
+        elevation: 5,
     },
     name: {
         fontSize: 24,
@@ -113,42 +145,45 @@ const styles = StyleSheet.create({
     class: {
         fontSize: 14,
         color: '#e0e7ff',
+        opacity: 0.9,
     },
     statsGrid: {
         flexDirection: 'row',
         padding: 16,
         gap: 12,
+        marginTop: -20,
     },
     statBox: {
         flex: 1,
         backgroundColor: '#ffffff',
-        padding: 16,
-        borderRadius: 12,
+        padding: 12,
+        borderRadius: 16,
         alignItems: 'center',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        shadowRadius: 8,
+        elevation: 4,
     },
     statValue: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#1f2937',
-        marginBottom: 4,
+        marginBottom: 2,
     },
     statLabel: {
         fontSize: 11,
         color: '#6b7280',
+        fontWeight: '500',
     },
     section: {
-        padding: 16,
+        padding: 20,
     },
     sectionTitle: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#1f2937',
-        marginBottom: 12,
+        marginBottom: 16,
     },
     badgeGrid: {
         flexDirection: 'row',
@@ -159,16 +194,15 @@ const styles = StyleSheet.create({
         width: '47%',
         backgroundColor: '#ffffff',
         padding: 16,
-        borderRadius: 12,
+        borderRadius: 16,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.05,
         shadowRadius: 4,
-        elevation: 3,
+        elevation: 2,
     },
     badgeIcon: {
-        fontSize: 40,
         marginBottom: 8,
     },
     badgeName: {
@@ -189,14 +223,32 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.05,
         shadowRadius: 2,
-        elevation: 2,
+        elevation: 1,
+    },
+    menuItemLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
     },
     menuItemText: {
         fontSize: 16,
         color: '#1f2937',
+        fontWeight: '500',
     },
-    menuItemArrow: {
-        fontSize: 24,
-        color: '#9ca3af',
+    logoutButton: {
+        marginTop: 12,
+        backgroundColor: '#fef2f2',
+    },
+    iconContainer: {
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    statusDot: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
     },
 });

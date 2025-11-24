@@ -1,40 +1,41 @@
+import { Users, UserCheck, TrendingUp, Award, AlertCircle, Trophy } from 'lucide-react';
+import { MOCK_CLASS_ANALYTICS } from '@vidyut/shared';
+
 export default function TeacherDashboard() {
-    const classData = {
-        grade: 8,
-        section: 'A',
-        totalStudents: 35,
-        activeStudents: 28,
-        avgMastery: 68,
-    };
-
-    const topPerformers = [
-        { name: 'Rahul Kumar', points: 850, mastery: 92 },
-        { name: 'Priya Sharma', points: 780, mastery: 88 },
-        { name: 'Amit Patel', points: 720, mastery: 85 },
-    ];
-
-    const needsAttention = [
-        { name: 'Student A', points: 120, mastery: 45 },
-        { name: 'Student B', points: 95, mastery: 38 },
-    ];
+    const { grade, section, totalStudents, activeStudents, avgMastery, topPerformers, needsAttention } = MOCK_CLASS_ANALYTICS;
 
     return (
         <div className="fade-in">
             <h1 className="mb-3">Teacher Dashboard</h1>
-            <p className="text-secondary mb-4">Class {classData.grade} - Section {classData.section}</p>
+            <p className="text-secondary mb-4">Class {grade} - Section {section}</p>
 
             <div className="grid grid-3 mb-4">
                 <div className="card">
-                    <p className="text-secondary mb-1">Total Students</p>
-                    <h2 style={{ color: 'var(--primary)', margin: 0 }}>{classData.totalStudents}</h2>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-secondary mb-1">Total Students</p>
+                            <h2 style={{ color: 'var(--primary)', margin: 0 }}>{totalStudents}</h2>
+                        </div>
+                        <Users size={32} color="var(--primary)" style={{ opacity: 0.5 }} />
+                    </div>
                 </div>
                 <div className="card">
-                    <p className="text-secondary mb-1">Active (7 days)</p>
-                    <h2 style={{ color: 'var(--secondary)', margin: 0 }}>{classData.activeStudents}</h2>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-secondary mb-1">Active (7 days)</p>
+                            <h2 style={{ color: 'var(--secondary)', margin: 0 }}>{activeStudents}</h2>
+                        </div>
+                        <UserCheck size={32} color="var(--secondary)" style={{ opacity: 0.5 }} />
+                    </div>
                 </div>
                 <div className="card">
-                    <p className="text-secondary mb-1">Avg Mastery</p>
-                    <h2 style={{ color: 'var(--warning)', margin: 0 }}>{classData.avgMastery}%</h2>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-secondary mb-1">Avg Mastery</p>
+                            <h2 style={{ color: 'var(--warning)', margin: 0 }}>{avgMastery}%</h2>
+                        </div>
+                        <TrendingUp size={32} color="var(--warning)" style={{ opacity: 0.5 }} />
+                    </div>
                 </div>
             </div>
 
@@ -52,14 +53,17 @@ export default function TeacherDashboard() {
                             }}
                         >
                             <div className="flex items-center justify-between">
-                                <div>
-                                    <h4 style={{ margin: 0, marginBottom: '0.25rem' }}>{student.name}</h4>
-                                    <p className="text-secondary" style={{ fontSize: '0.875rem', margin: 0 }}>
-                                        {student.points} points • {student.mastery}% mastery
-                                    </p>
+                                <div className="flex items-center gap-3">
+                                    <Award size={24} color={idx === 0 ? '#FFD700' : idx === 1 ? '#C0C0C0' : '#CD7F32'} />
+                                    <div>
+                                        <h4 style={{ margin: 0, marginBottom: '0.25rem' }}>{student.name}</h4>
+                                        <p className="text-secondary" style={{ fontSize: '0.875rem', margin: 0 }}>
+                                            {student.points} points • {student.mastery}% mastery
+                                        </p>
+                                    </div>
                                 </div>
-                                <span style={{ fontSize: '2rem' }}>
-                                    {idx === 0 ? '1st' : idx === 1 ? '2nd' : '3rd'}
+                                <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--text-secondary)' }}>
+                                    #{idx + 1}
                                 </span>
                             </div>
                         </div>
@@ -76,12 +80,18 @@ export default function TeacherDashboard() {
                                 borderRadius: '0.75rem',
                                 backgroundColor: '#FEE2E2',
                                 marginBottom: '0.5rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '1rem'
                             }}
                         >
-                            <h4 style={{ margin: 0, marginBottom: '0.25rem' }}>{student.name}</h4>
-                            <p style={{ fontSize: '0.875rem', color: '#991B1B', margin: 0 }}>
-                                {student.points} points • {student.mastery}% mastery
-                            </p>
+                            <AlertCircle size={24} color="#991B1B" />
+                            <div>
+                                <h4 style={{ margin: 0, marginBottom: '0.25rem' }}>{student.name}</h4>
+                                <p style={{ fontSize: '0.875rem', color: '#991B1B', margin: 0 }}>
+                                    {student.points} points • {student.mastery}% mastery
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -97,6 +107,7 @@ export default function TeacherDashboard() {
                     borderRadius: '0.75rem',
                     textAlign: 'center',
                 }}>
+                    <Trophy size={48} color="var(--text-secondary)" style={{ opacity: 0.2, marginBottom: '1rem' }} />
                     <p className="text-secondary">Heatmap visualization would go here</p>
                     <p className="text-secondary" style={{ fontSize: '0.875rem' }}>
                         (Requires chart library like recharts)

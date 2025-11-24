@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BookOpen, FlaskConical, Globe, ChevronRight, PlayCircle, Calculator } from 'lucide-react-native';
 
 export default function CoursesScreen() {
     return (
@@ -13,8 +14,13 @@ export default function CoursesScreen() {
 
                 <View style={styles.coursesContainer}>
                     <View style={styles.courseCard}>
-                        <View style={styles.courseBadge}>
-                            <Text style={styles.courseBadgeText}>Class 6</Text>
+                        <View style={styles.courseHeader}>
+                            <View style={[styles.iconContainer, { backgroundColor: '#dbeafe' }]}>
+                                <Calculator size={24} color="#2563eb" />
+                            </View>
+                            <View style={styles.courseBadge}>
+                                <Text style={styles.courseBadgeText}>Class 6</Text>
+                            </View>
                         </View>
                         <Text style={styles.courseTitle}>Mathematics Fundamentals</Text>
                         <Text style={styles.courseDescription}>
@@ -24,13 +30,19 @@ export default function CoursesScreen() {
                             <Text style={styles.courseStats}>12 Chapters • 45 Lessons</Text>
                             <TouchableOpacity style={styles.enrollButton}>
                                 <Text style={styles.enrollButtonText}>Continue</Text>
+                                <ChevronRight size={16} color="#ffffff" />
                             </TouchableOpacity>
                         </View>
                     </View>
 
                     <View style={styles.courseCard}>
-                        <View style={styles.courseBadge}>
-                            <Text style={styles.courseBadgeText}>Class 6</Text>
+                        <View style={styles.courseHeader}>
+                            <View style={[styles.iconContainer, { backgroundColor: '#dcfce7' }]}>
+                                <FlaskConical size={24} color="#16a34a" />
+                            </View>
+                            <View style={styles.courseBadge}>
+                                <Text style={styles.courseBadgeText}>Class 6</Text>
+                            </View>
                         </View>
                         <Text style={styles.courseTitle}>Science Exploration</Text>
                         <Text style={styles.courseDescription}>
@@ -40,13 +52,19 @@ export default function CoursesScreen() {
                             <Text style={styles.courseStats}>10 Chapters • 38 Lessons</Text>
                             <TouchableOpacity style={styles.enrollButton}>
                                 <Text style={styles.enrollButtonText}>Continue</Text>
+                                <ChevronRight size={16} color="#ffffff" />
                             </TouchableOpacity>
                         </View>
                     </View>
 
                     <View style={styles.courseCard}>
-                        <View style={styles.courseBadge}>
-                            <Text style={styles.courseBadgeText}>Class 6</Text>
+                        <View style={styles.courseHeader}>
+                            <View style={[styles.iconContainer, { backgroundColor: '#fef3c7' }]}>
+                                <BookOpen size={24} color="#d97706" />
+                            </View>
+                            <View style={styles.courseBadge}>
+                                <Text style={styles.courseBadgeText}>Class 6</Text>
+                            </View>
                         </View>
                         <Text style={styles.courseTitle}>English Language</Text>
                         <Text style={styles.courseDescription}>
@@ -56,6 +74,29 @@ export default function CoursesScreen() {
                             <Text style={styles.courseStats}>8 Chapters • 32 Lessons</Text>
                             <TouchableOpacity style={styles.enrollButton}>
                                 <Text style={styles.enrollButtonText}>Start</Text>
+                                <PlayCircle size={16} color="#ffffff" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <View style={styles.courseCard}>
+                        <View style={styles.courseHeader}>
+                            <View style={[styles.iconContainer, { backgroundColor: '#fce7f3' }]}>
+                                <Globe size={24} color="#db2777" />
+                            </View>
+                            <View style={styles.courseBadge}>
+                                <Text style={styles.courseBadgeText}>Class 6</Text>
+                            </View>
+                        </View>
+                        <Text style={styles.courseTitle}>Social Studies</Text>
+                        <Text style={styles.courseDescription}>
+                            Learn about history, geography, and civics
+                        </Text>
+                        <View style={styles.courseFooter}>
+                            <Text style={styles.courseStats}>9 Chapters • 28 Lessons</Text>
+                            <TouchableOpacity style={styles.enrollButton}>
+                                <Text style={styles.enrollButtonText}>Start</Text>
+                                <PlayCircle size={16} color="#ffffff" />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -74,7 +115,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        padding: 20,
+        padding: 24,
         backgroundColor: '#ffffff',
     },
     title: {
@@ -97,22 +138,33 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.05,
         shadowRadius: 4,
-        elevation: 3,
+        elevation: 2,
+    },
+    courseHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        marginBottom: 12,
+    },
+    iconContainer: {
+        width: 48,
+        height: 48,
+        borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     courseBadge: {
-        alignSelf: 'flex-start',
-        backgroundColor: '#eef2ff',
+        backgroundColor: '#f3f4f6',
         paddingHorizontal: 12,
         paddingVertical: 6,
         borderRadius: 12,
-        marginBottom: 12,
     },
     courseBadgeText: {
         fontSize: 12,
         fontWeight: '600',
-        color: '#6366f1',
+        color: '#4b5563',
     },
     courseTitle: {
         fontSize: 20,
@@ -130,16 +182,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#f3f4f6',
+        paddingTop: 16,
     },
     courseStats: {
         fontSize: 12,
         color: '#9ca3af',
+        fontWeight: '500',
     },
     enrollButton: {
         backgroundColor: '#6366f1',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
         borderRadius: 8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
     },
     enrollButtonText: {
         fontSize: 14,

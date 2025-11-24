@@ -28,6 +28,19 @@ async function getRecentStudents() {
     });
 }
 
+interface Student {
+    id: string;
+    name: string;
+    email: string;
+    grade: string;
+    progress: number;
+    status: 'Active' | 'Inactive';
+    class: string;
+    section?: string;
+    rollNumber: string;
+    createdAt: Date;
+}
+
 export default async function DashboardPage() {
     const stats = await getStats();
     const recentStudents = await getRecentStudents();
@@ -36,7 +49,7 @@ export default async function DashboardPage() {
         <div className="p-8">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-                <p className="text-gray-600">Welcome to the Vidyut Bandhu Admin Portal</p>
+                <p className="text-gray-600">Welcome to the P.E.E.R Admin Portal</p>
             </div>
 
             {/* Stats Grid */}
@@ -100,7 +113,7 @@ export default async function DashboardPage() {
                         <p className="text-gray-500 text-center py-8">No students yet. Add your first student!</p>
                     ) : (
                         <div className="space-y-4">
-                            {recentStudents.map((student) => (
+                            {recentStudents.map((student: Student) => (
                                 <div key={student.id} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
                                     <div>
                                         <p className="font-medium text-gray-900">{student.name}</p>

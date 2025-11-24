@@ -3,13 +3,13 @@
 // Hardware: ESP32 DevKit, LED, Vibration Motor, Light Sensor (LDR)
 // ============================================================================
 
+#include <BLE2902.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
-#include <BLE2902.h>
 
 // UUIDs for BLE Service and Characteristic
-#define SERVICE_UUID        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 #define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
 
 // Pin Definitions
@@ -18,8 +18,8 @@
 #define LIGHT_SENSOR_PIN 34 // LDR analog input
 
 // Global Variables
-BLEServer* pServer = NULL;
-BLECharacteristic* pCharacteristic = NULL;
+BLEServer *pServer = NULL;
+BLECharacteristic *pCharacteristic = NULL;
 bool deviceConnected = false;
 bool oldDeviceConnected = false;
 
@@ -32,22 +32,22 @@ struct Settings {
 } settings;
 
 // BLE Server Callbacks
-class MyServerCallbacks: public BLEServerCallbacks {
-  void onConnect(BLEServer* pServer) {
+class MyServerCallbacks : public BLEServerCallbacks {
+  void onConnect(BLEServer *pServer) {
     deviceConnected = true;
     Serial.println("Device connected");
     // Blink LED to indicate connection
     blinkLED(3);
   }
 
-  void onDisconnect(BLEServer* pServer) {
+  void onDisconnect(BLEServer *pServer) {
     deviceConnected = false;
     Serial.println("Device disconnected");
   }
 };
 
 // BLE Characteristic Callbacks
-class MyCallbacks: public BLECharacteristicCallbacks {
+class MyCallbacks : public BLECharacteristicCallbacks {
   void onWrite(BLECharacteristic *pCharacteristic) {
     std::string value = pCharacteristic->getValue();
 
@@ -57,20 +57,17 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
       // Parse commands
       String command = String(value.c_str());
-      
+
       if (command.startsWith("VIBRATE:")) {
         int duration = command.substring(8).toInt();
         vibrate(duration);
-      }
-      else if (command.startsWith("LED:")) {
+      } else if (command.startsWith("LED:")) {
         int brightness = command.substring(4).toInt();
         setLED(brightness);
-      }
-      else if (command.startsWith("REMINDER:")) {
+      } else if (command.startsWith("REMINDER:")) {
         String enabled = command.substring(9);
         settings.reminderEnabled = (enabled == "ON");
-      }
-      else if (command == "GET_LIGHT") {
+      } else if (command == "GET_LIGHT") {
         int lightLevel = readLightSensor();
         String response = "LIGHT:" + String(lightLevel);
         pCharacteristic->setValue(response.c_str());
@@ -82,7 +79,7 @@ class MyCallbacks: public BLECharacteristicCallbacks {
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Vidyut Bandhu ESP32 Starting...");
+  Serial.println("P.E.E.R ESP32 Starting...");
 
   // Initialize pins
   pinMode(LED_PIN, OUTPUT);
@@ -90,8 +87,8 @@ void setup() {
   pinMode(LIGHT_SENSOR_PIN, INPUT);
 
   // Initialize BLE
-  BLEDevice::init("Vidyut-Bandhu");
-  
+  BLEDevice::init("P.E.E.R");
+
   // Create BLE Server
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
@@ -101,11 +98,9 @@ void setup() {
 
   // Create BLE Characteristic
   pCharacteristic = pService->createCharacteristic(
-    CHARACTERISTIC_UUID,
-    BLECharacteristic::PROPERTY_READ |
-    BLECharacteristic::PROPERTY_WRITE |
-    BLECharacteristic::PROPERTY_NOTIFY
-  );
+      CHARACTERISTIC_UUID, BLECharacteristic::PROPERTY_READ |
+                               BLECharacteristic::PROPERTY_WRITE |
+                               BLECharacteristic::PROPERTY_NOTIFY);
 
   pCharacteristic->setCallbacks(new MyCallbacks());
   pCharacteristic->addDescriptor(new BLE2902());
@@ -146,7 +141,7 @@ void loop() {
   static unsigned long lastSensorRead = 0;
   if (millis() - lastSensorRead > 10000) {
     lastSensorRead = millis();
-    
+
     if (deviceConnected) {
       int lightLevel = readLightSensor();
       String data = "LIGHT:" + String(lightLevel);
@@ -158,7 +153,7 @@ void loop() {
 
   // Check for reminder times (simplified - in production use RTC)
   // This would require adding a real-time clock module
-  
+
   delay(100);
 }
 

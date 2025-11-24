@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
+import { Home, BookOpen, Library, Users, User } from 'lucide-react-native';
 
 // Import screens
 import DashboardScreen from './src/screens/DashboardScreen';
@@ -30,9 +31,14 @@ export default function App() {
           <NavigationContainer>
             <Tab.Navigator
               screenOptions={{
-                headerShown: true,
+                headerShown: false,
                 tabBarActiveTintColor: '#6366f1',
                 tabBarInactiveTintColor: '#9ca3af',
+                tabBarStyle: {
+                  paddingBottom: 8,
+                  paddingTop: 8,
+                  height: 60,
+                },
               }}
             >
               <Tab.Screen
@@ -40,6 +46,9 @@ export default function App() {
                 component={DashboardScreen}
                 options={{
                   tabBarLabel: 'Home',
+                  tabBarIcon: ({ color, size }) => (
+                    <Home size={size} color={color} />
+                  ),
                 }}
               />
               <Tab.Screen
@@ -47,6 +56,9 @@ export default function App() {
                 component={LearningScreen}
                 options={{
                   tabBarLabel: 'Learn',
+                  tabBarIcon: ({ color, size }) => (
+                    <BookOpen size={size} color={color} />
+                  ),
                 }}
               />
               <Tab.Screen
@@ -54,6 +66,9 @@ export default function App() {
                 component={CoursesScreen}
                 options={{
                   tabBarLabel: 'Courses',
+                  tabBarIcon: ({ color, size }) => (
+                    <Library size={size} color={color} />
+                  ),
                 }}
               />
               <Tab.Screen
@@ -61,6 +76,9 @@ export default function App() {
                 component={CommunityScreen}
                 options={{
                   tabBarLabel: 'Community',
+                  tabBarIcon: ({ color, size }) => (
+                    <Users size={size} color={color} />
+                  ),
                 }}
               />
               <Tab.Screen
@@ -68,6 +86,9 @@ export default function App() {
                 component={ProfileScreen}
                 options={{
                   tabBarLabel: 'Profile',
+                  tabBarIcon: ({ color, size }) => (
+                    <User size={size} color={color} />
+                  ),
                 }}
               />
             </Tab.Navigator>

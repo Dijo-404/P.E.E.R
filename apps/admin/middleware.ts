@@ -13,11 +13,12 @@ export function middleware(request: NextRequest) {
     }
 
     // For now, allow all requests (authentication can be added later)
+    // For now, allow all requests (authentication can be added later)
     // TODO: Implement proper authentication check
-    // const token = request.cookies.get('next-auth.session-token');
-    // if (!token && pathname.startsWith('/api/')) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
+    const token = request.cookies.get('next-auth.session-token');
+    if (!token && pathname.startsWith('/api/')) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     return NextResponse.next();
 }

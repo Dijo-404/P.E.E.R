@@ -9,8 +9,8 @@ export default defineConfig({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
             manifest: {
-                name: 'Vidyut Bandhu - AI Learning Platform',
-                short_name: 'Vidyut Bandhu',
+                name: 'P.E.E.R - AI Learning Platform',
+                short_name: 'P.E.E.R',
                 description: 'Offline-first AI learning platform for rural schools in India',
                 theme_color: '#4F46E5',
                 background_color: '#ffffff',

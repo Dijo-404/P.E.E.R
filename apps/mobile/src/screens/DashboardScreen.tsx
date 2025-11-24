@@ -1,55 +1,81 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Flame, Star, CheckCircle, BookOpen, Clock, Activity as ActivityIcon } from 'lucide-react-native';
+import { MOCK_USER, MOCK_COURSES, MOCK_ACTIVITIES } from '@vidyut/shared';
 
 export default function DashboardScreen() {
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
+            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.header}>
-                    <Text style={styles.greeting}>Welcome back!</Text>
+                    <Text style={styles.greeting}>Welcome back, {MOCK_USER.name.split(' ')[0]}!</Text>
                     <Text style={styles.subtitle}>Continue your learning journey</Text>
                 </View>
 
                 <View style={styles.statsContainer}>
                     <View style={styles.statCard}>
-                        <Text style={styles.statValue}>7</Text>
+                        <Flame size={24} color="#ef4444" style={styles.statIcon} />
+                        <Text style={styles.statValue}>{MOCK_USER.streak}</Text>
                         <Text style={styles.statLabel}>Day Streak</Text>
                     </View>
                     <View style={styles.statCard}>
-                        <Text style={styles.statValue}>450</Text>
+                        <Star size={24} color="#eab308" style={styles.statIcon} />
+                        <Text style={styles.statValue}>{MOCK_USER.points}</Text>
                         <Text style={styles.statLabel}>Total Points</Text>
                     </View>
                     <View style={styles.statCard}>
-                        <Text style={styles.statValue}>12</Text>
+                        <CheckCircle size={24} color="#22c55e" style={styles.statIcon} />
+                        <Text style={styles.statValue}>{MOCK_USER.completedLessons}</Text>
                         <Text style={styles.statLabel}>Completed</Text>
                     </View>
                 </View>
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Continue Learning</Text>
-                    <View style={styles.card}>
-                        <Text style={styles.cardTitle}>Mathematics - Chapter 5</Text>
-                        <Text style={styles.cardSubtitle}>Algebra Basics</Text>
-                        <View style={styles.progressBar}>
-                            <View style={[styles.progressFill, { width: '60%' }]} />
-                        </View>
-                        <Text style={styles.progressText}>60% Complete</Text>
-                    </View>
+                    {MOCK_COURSES.slice(0, 2).map((course) => (
+                        <TouchableOpacity key={course.id} style={styles.card}>
+                            <View style={styles.cardHeader}>
+                                <BookOpen size={24} color="#6366f1" />
+                                <View style={styles.cardHeaderText}>
+                                    <Text style={styles.cardTitle}>{course.title}</Text>
+                                    <Text style={styles.cardSubtitle}>{course.description.substring(0, 40)}...</Text>
+                                </View>
+                            </View>
+                            <View style={styles.progressBar}>
+                                <View style={[styles.progressFill, { width: `${course.progress}%` }]} />
+                            </View>
+                            <Text style={styles.progressText}>{course.progress}% Complete</Text>
+                        </TouchableOpacity>
+                    ))}
                 </View>
 
                 <View style={styles.section}>
                     <Text style={styles.sectionTitle}>Recent Activity</Text>
-                    <View style={styles.activityItem}>
-                        <Text style={styles.activityTitle}>Completed Quiz: Fractions</Text>
-                        <Text style={styles.activityTime}>2 hours ago</Text>
-                    </View>
-                    <View style={styles.activityItem}>
-                        <Text style={styles.activityTitle}>Started: Science Chapter 3</Text>
-                        <Text style={styles.activityTime}>Yesterday</Text>
-                    </View>
+                    {MOCK_ACTIVITIES.map((activity) => (
+                        <View key={activity.id} style={styles.activityItem}>
+                            <View style={styles.activityIconContainer}>
+                                {activity.status === 'completed' ? (
+                                    <CheckCircle size={20} color="#22c55e" />
+                                ) : (
+                                    <Clock size={20} color="#f59e0b" />
+                                )}
+                            </View>
+                            <View style={styles.activityContent}>
+                                <Text style={styles.activityTitle}>{activity.title}</Text>
+                                <Text style={styles.activityTime}>
+                                    {new Date(activity.timestamp).toLocaleDateString()}
+                                </Text>
+                            </View>
+                        </View>
+                    ))}
                 </View>
             </ScrollView>
+
+            <TouchableOpacity style={styles.fab}>
+                <ActivityIcon size={24} color="#ffffff" />
+                <Text style={styles.fabText}>Ask AI</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 }
@@ -62,65 +88,114 @@ const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
     },
-    header: {
-        padding: 20,
+    fab: {
+        position: 'absolute',
+        bottom: 24,
+        right: 24,
         backgroundColor: '#6366f1',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 32,
+        shadowColor: '#6366f1',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 6,
+        gap: 8,
+    },
+    fabText: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+    header: {
+        padding: 24,
+        paddingBottom: 48,
+        backgroundColor: '#6366f1',
+        borderBottomLeftRadius: 32,
+        borderBottomRightRadius: 32,
     },
     greeting: {
         fontSize: 28,
         fontWeight: 'bold',
         color: '#ffffff',
-        marginBottom: 4,
+        marginBottom: 8,
     },
     subtitle: {
         fontSize: 16,
         color: '#e0e7ff',
+        opacity: 0.9,
     },
     statsContainer: {
         flexDirection: 'row',
-        padding: 16,
+        paddingHorizontal: 20,
         gap: 12,
+        marginTop: -32,
     },
     statCard: {
         flex: 1,
         backgroundColor: '#ffffff',
         padding: 16,
-        borderRadius: 12,
+        borderRadius: 20,
         alignItems: 'center',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
+        shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        shadowRadius: 12,
+        elevation: 8,
+    },
+    statIcon: {
+        marginBottom: 8,
+        padding: 8,
+        backgroundColor: '#f3f4f6',
+        borderRadius: 12,
     },
     statValue: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: 'bold',
         color: '#1f2937',
-        marginBottom: 4,
+        marginBottom: 2,
     },
     statLabel: {
-        fontSize: 12,
+        fontSize: 11,
         color: '#6b7280',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
     },
     section: {
-        padding: 16,
+        padding: 24,
+        paddingBottom: 0,
     },
     sectionTitle: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#1f2937',
-        marginBottom: 12,
+        marginBottom: 16,
     },
     card: {
         backgroundColor: '#ffffff',
-        padding: 16,
-        borderRadius: 12,
+        padding: 20,
+        borderRadius: 20,
+        marginBottom: 16,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
         elevation: 3,
+        borderWidth: 1,
+        borderColor: '#f3f4f6',
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 16,
+        gap: 16,
+    },
+    cardHeaderText: {
+        flex: 1,
     },
     cardTitle: {
         fontSize: 18,
@@ -131,11 +206,10 @@ const styles = StyleSheet.create({
     cardSubtitle: {
         fontSize: 14,
         color: '#6b7280',
-        marginBottom: 12,
     },
     progressBar: {
         height: 8,
-        backgroundColor: '#e5e7eb',
+        backgroundColor: '#f3f4f6',
         borderRadius: 4,
         marginBottom: 8,
         overflow: 'hidden',
@@ -148,21 +222,39 @@ const styles = StyleSheet.create({
     progressText: {
         fontSize: 12,
         color: '#6b7280',
+        textAlign: 'right',
+        fontWeight: '500',
     },
     activityItem: {
         backgroundColor: '#ffffff',
         padding: 16,
-        borderRadius: 12,
-        marginBottom: 8,
+        borderRadius: 16,
+        marginBottom: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 16,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
-        shadowRadius: 2,
+        shadowRadius: 4,
         elevation: 2,
+        borderWidth: 1,
+        borderColor: '#f3f4f6',
+    },
+    activityIconContainer: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
+        backgroundColor: '#f3f4f6',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    activityContent: {
+        flex: 1,
     },
     activityTitle: {
-        fontSize: 16,
-        fontWeight: '500',
+        fontSize: 15,
+        fontWeight: '600',
         color: '#1f2937',
         marginBottom: 4,
     },

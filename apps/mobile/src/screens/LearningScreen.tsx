@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Calculator, FlaskConical, BookOpen, Globe, Clock, PlayCircle } from 'lucide-react-native';
 
 export default function LearningScreen() {
     return (
@@ -13,25 +14,25 @@ export default function LearningScreen() {
 
                 <View style={styles.subjectsContainer}>
                     <TouchableOpacity style={[styles.subjectCard, { backgroundColor: '#dbeafe' }]}>
-                        <Text style={styles.subjectIcon}></Text>
+                        <Calculator size={40} color="#2563eb" style={styles.subjectIcon} />
                         <Text style={styles.subjectTitle}>Mathematics</Text>
                         <Text style={styles.subjectProgress}>8/12 chapters</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={[styles.subjectCard, { backgroundColor: '#dcfce7' }]}>
-                        <Text style={styles.subjectIcon}></Text>
+                        <FlaskConical size={40} color="#16a34a" style={styles.subjectIcon} />
                         <Text style={styles.subjectTitle}>Science</Text>
                         <Text style={styles.subjectProgress}>5/10 chapters</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={[styles.subjectCard, { backgroundColor: '#fef3c7' }]}>
-                        <Text style={styles.subjectIcon}></Text>
+                        <BookOpen size={40} color="#d97706" style={styles.subjectIcon} />
                         <Text style={styles.subjectTitle}>English</Text>
                         <Text style={styles.subjectProgress}>6/8 chapters</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={[styles.subjectCard, { backgroundColor: '#fce7f3' }]}>
-                        <Text style={styles.subjectIcon}></Text>
+                        <Globe size={40} color="#db2777" style={styles.subjectIcon} />
                         <Text style={styles.subjectTitle}>Social Studies</Text>
                         <Text style={styles.subjectProgress}>3/9 chapters</Text>
                     </TouchableOpacity>
@@ -41,24 +42,56 @@ export default function LearningScreen() {
                     <Text style={styles.sectionTitle}>Recommended for You</Text>
                     <View style={styles.lessonCard}>
                         <View style={styles.lessonHeader}>
-                            <Text style={styles.lessonBadge}>Mathematics</Text>
-                            <Text style={styles.lessonDuration}>15 min</Text>
+                            <Text style={[styles.lessonBadge, { color: '#2563eb', backgroundColor: '#dbeafe' }]}>Mathematics</Text>
+                            <View style={styles.durationContainer}>
+                                <Clock size={14} color="#9ca3af" />
+                                <Text style={styles.lessonDuration}>15 min</Text>
+                            </View>
                         </View>
                         <Text style={styles.lessonTitle}>Understanding Fractions</Text>
                         <Text style={styles.lessonDescription}>
-                            Learn the basics of fractions and how to add them
+                            Learn the basics of fractions and how to add them with visual examples.
                         </Text>
+                        <TouchableOpacity style={styles.startButton}>
+                            <PlayCircle size={20} color="#ffffff" />
+                            <Text style={styles.startButtonText}>Start Lesson</Text>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.lessonCard}>
                         <View style={styles.lessonHeader}>
-                            <Text style={styles.lessonBadge}>Science</Text>
-                            <Text style={styles.lessonDuration}>20 min</Text>
+                            <Text style={[styles.lessonBadge, { color: '#16a34a', backgroundColor: '#dcfce7' }]}>Science</Text>
+                            <View style={styles.durationContainer}>
+                                <Clock size={14} color="#9ca3af" />
+                                <Text style={styles.lessonDuration}>20 min</Text>
+                            </View>
                         </View>
                         <Text style={styles.lessonTitle}>The Water Cycle</Text>
                         <Text style={styles.lessonDescription}>
-                            Explore how water moves through our environment
+                            Explore how water moves through our environment in this interactive lesson.
                         </Text>
+                        <TouchableOpacity style={styles.startButton}>
+                            <PlayCircle size={20} color="#ffffff" />
+                            <Text style={styles.startButtonText}>Start Lesson</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.lessonCard}>
+                        <View style={styles.lessonHeader}>
+                            <Text style={[styles.lessonBadge, { color: '#d97706', backgroundColor: '#fef3c7' }]}>English</Text>
+                            <View style={styles.durationContainer}>
+                                <Clock size={14} color="#9ca3af" />
+                                <Text style={styles.lessonDuration}>12 min</Text>
+                            </View>
+                        </View>
+                        <Text style={styles.lessonTitle}>Parts of Speech: Verbs</Text>
+                        <Text style={styles.lessonDescription}>
+                            Master action words and helping verbs with fun exercises.
+                        </Text>
+                        <TouchableOpacity style={styles.startButton}>
+                            <PlayCircle size={20} color="#ffffff" />
+                            <Text style={styles.startButtonText}>Start Lesson</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
@@ -75,8 +108,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        padding: 20,
+        padding: 24,
         backgroundColor: '#ffffff',
+        borderBottomWidth: 1,
+        borderBottomColor: '#f3f4f6',
     },
     title: {
         fontSize: 28,
@@ -97,21 +132,25 @@ const styles = StyleSheet.create({
     subjectCard: {
         width: '47%',
         padding: 20,
-        borderRadius: 16,
+        borderRadius: 20,
         alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        elevation: 2,
     },
     subjectIcon: {
-        fontSize: 48,
-        marginBottom: 8,
+        marginBottom: 12,
     },
     subjectTitle: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '600',
         color: '#1f2937',
         marginBottom: 4,
     },
     subjectProgress: {
-        fontSize: 14,
+        fontSize: 12,
         color: '#6b7280',
     },
     section: {
@@ -121,33 +160,37 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: '#1f2937',
-        marginBottom: 12,
+        marginBottom: 16,
     },
     lessonCard: {
         backgroundColor: '#ffffff',
-        padding: 16,
-        borderRadius: 12,
-        marginBottom: 12,
+        padding: 20,
+        borderRadius: 16,
+        marginBottom: 16,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.05,
         shadowRadius: 4,
-        elevation: 3,
+        elevation: 2,
     },
     lessonHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 8,
+        marginBottom: 12,
     },
     lessonBadge: {
         fontSize: 12,
         fontWeight: '600',
-        color: '#6366f1',
-        backgroundColor: '#eef2ff',
         paddingHorizontal: 12,
         paddingVertical: 4,
         borderRadius: 12,
+        overflow: 'hidden',
+    },
+    durationContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
     },
     lessonDuration: {
         fontSize: 12,
@@ -157,11 +200,26 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
         color: '#1f2937',
-        marginBottom: 4,
+        marginBottom: 8,
     },
     lessonDescription: {
         fontSize: 14,
         color: '#6b7280',
         lineHeight: 20,
+        marginBottom: 16,
+    },
+    startButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#6366f1',
+        paddingVertical: 10,
+        borderRadius: 10,
+        gap: 8,
+    },
+    startButtonText: {
+        color: '#ffffff',
+        fontWeight: '600',
+        fontSize: 14,
     },
 });
