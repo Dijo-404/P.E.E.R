@@ -7,23 +7,44 @@ import {
     ChatMessage
 } from './types';
 
-export const MOCK_USER: User = {
-    id: 'user-1',
-    name: 'Rohan Kumar',
-    role: 'student',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rohan',
-    points: 1250,
-    streak: 12,
-    level: 5,
-    masteryScore: 78,
-    completedLessons: 24,
-    language: 'hi', // Hindi
-    preferences: {
+export const MOCK_USERS: User[] = [
+    {
+        id: 'user-1',
+        name: 'Rohan Kumar',
+        role: 'student',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rohan',
+        points: 1250,
+        streak: 12,
+        level: 5,
+        masteryScore: 78,
+        completedLessons: 24,
         language: 'hi', // Hindi
-        notifications: true,
-        offlineMode: false
+        preferences: {
+            language: 'hi', // Hindi
+            notifications: true,
+            offlineMode: false
+        }
+    },
+    {
+        id: 'user-2',
+        name: 'Test Student',
+        role: 'student',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Test',
+        points: 500,
+        streak: 3,
+        level: 2,
+        masteryScore: 60,
+        completedLessons: 10,
+        language: 'en', // English
+        preferences: {
+            language: 'en', // English
+            notifications: true,
+            offlineMode: true
+        }
     }
-};
+];
+
+export const MOCK_USER = MOCK_USERS[0];
 
 export const MOCK_COURSES: Course[] = [
     {
