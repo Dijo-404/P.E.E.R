@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -99,3 +100,4 @@ export default function App() {
     </ErrorBoundary>
   );
 }
+registerRootComponent(App);
