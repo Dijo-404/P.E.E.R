@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma';
 import { Users, FileText, TrendingUp, Award } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 async function getStats() {
     const [studentCount, assignmentCount, avgPerformance] = await Promise.all([
         prisma.student.count(),
@@ -26,19 +28,6 @@ async function getRecentStudents() {
             createdAt: 'desc',
         },
     });
-}
-
-interface Student {
-    id: string;
-    name: string;
-    email: string;
-    grade: string;
-    progress: number;
-    status: 'Active' | 'Inactive';
-    class: string;
-    section?: string;
-    rollNumber: string;
-    createdAt: Date;
 }
 
 export default async function DashboardPage() {
@@ -113,7 +102,7 @@ export default async function DashboardPage() {
                         <p className="text-gray-500 text-center py-8">No students yet. Add your first student!</p>
                     ) : (
                         <div className="space-y-4">
-                            {recentStudents.map((student: Student) => (
+                            {recentStudents.map((student: any) => (
                                 <div key={student.id} className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
                                     <div>
                                         <p className="font-medium text-gray-900">{student.name}</p>

@@ -1,5 +1,7 @@
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 async function getPerformanceData() {
     const performances = await prisma.performance.findMany({
         include: {
@@ -41,7 +43,7 @@ export default async function PerformancePage() {
 
             {/* Subject Stats */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
-                {subjectStats.map((stat) => (
+                {subjectStats.map((stat: any) => (
                     <div key={stat.subject} className="bg-white rounded-lg shadow p-6">
                         <h3 className="text-sm font-medium text-gray-600 mb-2">{stat.subject}</h3>
                         <p className="text-3xl font-bold text-gray-900">
@@ -86,7 +88,7 @@ export default async function PerformancePage() {
                                     </td>
                                 </tr>
                             ) : (
-                                performances.map((perf) => (
+                                performances.map((perf: any) => (
                                     <tr key={perf.id} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="text-sm font-medium text-gray-900">{perf.student.name}</div>

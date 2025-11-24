@@ -2,7 +2,7 @@
 // Unified Inference Engine
 // ============================================================================
 
-import type { LlamaModel, GenerateOptions } from './llama-web';
+import type { LlamaModel } from './llama-web';
 import { createLlamaWebModel } from './llama-web';
 import { createOnnxMobileModel } from './onnx-mobile';
 import { getDeviceType } from '@vidyut/shared';

@@ -184,9 +184,10 @@ export class MobileDatabaseClient implements DatabaseClient {
         }
     }
 
-    private async initSchema(): Promise<void> {
-        // Load and execute schema.sql
-    }
+    // private async _initSchema(): Promise<void> {
+    //     // Load and execute schema.sql
+    // }
+
 }
 
 /**

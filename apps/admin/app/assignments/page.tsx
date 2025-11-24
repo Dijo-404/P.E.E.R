@@ -2,6 +2,8 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { Plus, Calendar, Users } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 async function getAssignments() {
     return prisma.assignment.findMany({
         include: {
@@ -43,7 +45,7 @@ export default async function AssignmentsPage() {
                         <p className="text-gray-500">No assignments yet. Create your first assignment!</p>
                     </div>
                 ) : (
-                    assignments.map((assignment) => {
+                    assignments.map((assignment: any) => {
                         const isPastDue = new Date(assignment.dueDate) < new Date();
                         return (
                             <Link
@@ -58,8 +60,8 @@ export default async function AssignmentsPage() {
                                         </h3>
                                         <span
                                             className={`px-2 py-1 text-xs font-medium rounded-full ${isPastDue
-                                                    ? 'bg-red-100 text-red-800'
-                                                    : 'bg-green-100 text-green-800'
+                                                ? 'bg-red-100 text-red-800'
+                                                : 'bg-green-100 text-green-800'
                                                 }`}
                                         >
                                             {isPastDue ? 'Past Due' : 'Active'}

@@ -2,6 +2,8 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 async function getStudents() {
     return prisma.student.findMany({
         orderBy: {
@@ -61,7 +63,7 @@ export default async function StudentsPage() {
                                 </td>
                             </tr>
                         ) : (
-                            students.map((student) => (
+                            students.map((student: any) => (
                                 <tr key={student.id} className="hover:bg-gray-50">
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm font-medium text-gray-900">{student.name}</div>
