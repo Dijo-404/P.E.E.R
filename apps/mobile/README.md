@@ -12,6 +12,13 @@ React Native mobile application for P.E.E.R, built with Expo and deployable via 
 - Community features
 - User profile and achievements
 
+## Styling
+
+The app uses **NativeWind v4** to bring Tailwind CSS to React Native.
+- **Global Styles**: Defined in `global.css`.
+- **Components**: Styled using `className` prop.
+- **Configuration**: `tailwind.config.js` and `metro.config.js` are configured for NativeWind v4.
+
 ## Prerequisites
 
 - Node.js 18+

@@ -23,6 +23,7 @@ P.E.E.R ("Peer-to-Peer Education & Energy Resource") is a complete open-source l
 **Frontend:**
 - React 18 + TypeScript
 - Vite (web) + Expo (mobile)
+- NativeWind v4 (Tailwind CSS) for mobile styling
 - React Router for navigation
 - Recharts for data visualization
 
