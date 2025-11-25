@@ -16,7 +16,11 @@ config.resolver.nodeModulesPaths = [
     path.resolve(workspaceRoot, 'node_modules'),
 ];
 
-// 3. Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
-config.resolver.disableHierarchicalLookup = true;
+// 3. Configure resolver for monorepo
+config.resolver = {
+    ...config.resolver,
+    unstable_enablePackageExports: true,
+    unstable_conditionNames: ['react-native', 'require', 'import'],
+};
 
 module.exports = withNativeWind(config, { input: './global.css' });
