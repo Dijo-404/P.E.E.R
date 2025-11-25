@@ -35,17 +35,8 @@
       "@vidyut/rag": [
         "./packages/rag/src"
       ],
-      "@vidyut/speech": [
-        "./packages/speech/src"
-      ],
       "@vidyut/gamification": [
         "./packages/gamification/src"
-      ],
-      "@vidyut/p2p": [
-        "./packages/p2p/src"
-      ],
-      "@vidyut/ui": [
-        "./packages/ui/src"
       ]
     }
   },
@@ -70,16 +61,7 @@
       "path": "./packages/rag"
     },
     {
-      "path": "./packages/speech"
-    },
-    {
       "path": "./packages/gamification"
-    },
-    {
-      "path": "./packages/p2p"
-    },
-    {
-      "path": "./packages/ui"
     }
   ]
 }

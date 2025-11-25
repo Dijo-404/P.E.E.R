@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BookOpen, FlaskConical, Globe, ChevronRight, PlayCircle, Calculator } from 'lucide-react-native';

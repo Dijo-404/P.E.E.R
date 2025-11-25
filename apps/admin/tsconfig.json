@@ -23,10 +23,21 @@
             }
         ],
         "paths": {
+            "@/components/*": [
+                "components/*"
+            ],
+            "@/lib/*": [
+                "lib/*"
+            ],
+            "@/app/*": [
+                "app/*"
+            ],
             "@/*": [
                 "./*"
             ]
-        }
+        },
+        "baseUrl": ".",
+        "rootDir": "."
     },
     "include": [
         "next-env.d.ts",

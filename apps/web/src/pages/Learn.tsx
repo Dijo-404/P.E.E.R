@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getInferenceEngine } from '@vidyut/ai';
 
 export default function Learn() {
     const { contentId } = useParams();
+    console.log(contentId);
     const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([
         { role: 'assistant', content: 'Hello! I\'m your AI tutor. What would you like to learn today?' },
     ]);

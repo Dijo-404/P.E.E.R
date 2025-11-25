@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '../../lib/prisma';
 import { Users, FileText, TrendingUp, Award } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';

@@ -8,7 +8,7 @@ import Layout from './components/Layout';
 
 function App() {
     // In production, check authentication and user role
-    const userRole = 'student'; // Mock role
+    const userRole: string = 'student'; // Mock role
 
     return (
         <BrowserRouter>

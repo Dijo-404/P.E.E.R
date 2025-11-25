@@ -1,4 +1,4 @@
-import { User, Award, Zap, Settings, Bell, Smartphone, Shield, ChevronRight } from 'lucide-react';
+import { User, Award, Zap, Bell, Smartphone, Shield, ChevronRight } from 'lucide-react';
 
 export default function Profile() {
     const user = {

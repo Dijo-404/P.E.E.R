@@ -1,3 +1,4 @@
+import './global.css';
 import { StatusBar } from 'expo-status-bar';
 import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
@@ -33,12 +34,14 @@ export default function App() {
             <Tab.Navigator
               screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: '#6366f1',
-                tabBarInactiveTintColor: '#9ca3af',
+                tabBarActiveTintColor: '#4f46e5', // Indigo 600
+                tabBarInactiveTintColor: '#6b7280', // Slate 500
                 tabBarStyle: {
                   paddingBottom: 8,
                   paddingTop: 8,
                   height: 60,
+                  backgroundColor: '#ffffff',
+                  borderTopColor: '#e5e7eb',
                 },
               }}
             >

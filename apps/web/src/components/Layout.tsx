@@ -1,6 +1,12 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { LayoutDashboard, BookOpen, MessageCircle, User, Wifi, WifiOff, Zap } from 'lucide-react';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}
 
 export default function Layout() {
     const location = useLocation();
@@ -27,37 +33,27 @@ export default function Layout() {
     ];
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div className="min-h-screen flex flex-col bg-background font-sans text-foreground">
             {/* Header */}
-            <header style={{
-                backgroundColor: 'var(--surface)',
-                borderBottom: '1px solid var(--border)',
-                padding: '1rem 0',
-                position: 'sticky',
-                top: 0,
-                zIndex: 100,
-                boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-            }}>
-                <div className="container flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <span style={{ fontSize: '2rem', color: 'var(--primary)', display: 'flex', alignItems: 'center' }}>
-                            <Zap size={32} fill="currentColor" />
+            <header className="bg-surface/80 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm transition-all duration-200">
+                <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <span className="text-primary flex items-center p-2 bg-primary/10 rounded-full">
+                            <Zap size={24} fill="currentColor" />
                         </span>
-                        <h1 style={{ fontSize: '1.5rem', margin: 0 }}>P.E.E.R</h1>
+                        <h1 className="text-xl font-bold tracking-tight text-foreground m-0">P.E.E.R</h1>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-4">
                         {/* Online/Offline indicator */}
-                        <div className="flex items-center gap-1" style={{
-                            padding: '0.5rem 1rem',
-                            borderRadius: '2rem',
-                            backgroundColor: isOnline ? '#DCFCE7' : '#FEE2E2',
-                            color: isOnline ? '#166534' : '#991B1B',
-                            fontSize: '0.875rem',
-                            fontWeight: 500,
-                        }}>
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
-                                {isOnline ? <Wifi size={16} /> : <WifiOff size={16} />}
+                        <div className={cn(
+                            "flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300",
+                            isOnline
+                                ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                                : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                        )}>
+                            <span className="flex items-center">
+                                {isOnline ? <Wifi size={14} /> : <WifiOff size={14} />}
                             </span>
                             <span>{isOnline ? 'Online' : 'Offline'}</span>
                         </div>
@@ -66,60 +62,44 @@ export default function Layout() {
             </header>
 
             {/* Navigation */}
-            <nav style={{
-                backgroundColor: 'var(--surface)',
-                borderBottom: '1px solid var(--border)',
-                padding: '0.5rem 0',
-            }}>
-                <div className="container">
-                    <div className="flex gap-1">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.path}
-                                to={item.path}
-                                style={{
-                                    padding: '0.75rem 1.5rem',
-                                    borderRadius: '0.5rem',
-                                    textDecoration: 'none',
-                                    color: location.pathname.startsWith(item.path)
-                                        ? 'var(--primary)'
-                                        : 'var(--text-secondary)',
-                                    backgroundColor: location.pathname.startsWith(item.path)
-                                        ? 'rgba(79, 70, 229, 0.1)'
-                                        : 'transparent',
-                                    fontWeight: 500,
-                                    transition: 'all 0.2s ease',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem',
-                                }}
-                            >
-                                <span style={{ display: 'flex', alignItems: 'center' }}>{item.icon}</span>
-                                <span>{item.label}</span>
-                            </Link>
-                        ))}
+            <nav className="bg-surface border-b border-border/50 shadow-sm">
+                <div className="container mx-auto px-4 py-2">
+                    <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                        {navItems.map((item) => {
+                            const isActive = location.pathname.startsWith(item.path);
+                            return (
+                                <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    className={cn(
+                                        "flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap",
+                                        isActive
+                                            ? "bg-primary text-white shadow-md shadow-primary/25 translate-y-[-1px]"
+                                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    )}
+                                >
+                                    <span className="flex items-center">{item.icon}</span>
+                                    <span>{item.label}</span>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </nav>
 
             {/* Main content */}
-            <main style={{ flex: 1, padding: '2rem 0' }}>
-                <div className="container">
+            <main className="flex-1 py-8 animate-in fade-in duration-500">
+                <div className="container mx-auto px-4">
                     <Outlet />
                 </div>
             </main>
 
             {/* Footer */}
-            <footer style={{
-                backgroundColor: 'var(--surface)',
-                borderTop: '1px solid var(--border)',
-                padding: '1.5rem 0',
-                marginTop: 'auto',
-            }}>
-                <div className="container text-center text-secondary">
-                    <p>© 2024 P.E.E.R - Empowering Rural Education</p>
-                    <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
-                        Offline-first AI Learning Platform
+            <footer className="bg-surface border-t border-border py-8 mt-auto">
+                <div className="container mx-auto px-4 text-center text-muted-foreground">
+                    <p className="font-medium">© 2024 P.E.E.R</p>
+                    <p className="text-sm mt-2 opacity-80">
+                        Empowering Rural Education • Offline-first AI Learning Platform
                     </p>
                 </div>
             </footer>

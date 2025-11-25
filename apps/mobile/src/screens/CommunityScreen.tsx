@@ -1,5 +1,4 @@
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Users, MessageCircle, Heart, Search, Star } from 'lucide-react-native';
 import { MOCK_TUTORS } from '@vidyut/shared';

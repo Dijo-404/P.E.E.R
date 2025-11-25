@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User, Footprints, Flame, Calculator, Star, ChevronRight, Settings, Bell, Shield, Info, LogOut } from 'lucide-react-native';

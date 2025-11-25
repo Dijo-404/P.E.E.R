@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { studentSchema } from '@/lib/validations';
+import { prisma } from '../../../lib/prisma';
+import { studentSchema } from '../../../lib/validations';
 
 // GET /api/students - List all students
 export async function GET(request: Request) {

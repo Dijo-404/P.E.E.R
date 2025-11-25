@@ -49,7 +49,7 @@ export function useApi<T>(
 
     return {
         data,
-        loading,
+        loading: loading ?? false,
         error,
         refetch: fetchData,
     };

@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { studentSchema } from '@/lib/validations';
+import { prisma } from '../../../../lib/prisma';
+import { studentSchema } from '../../../../lib/validations';
 
 // GET /api/students/[id] - Get a single student
 export async function GET(
-    request: Request,
+    _request: Request,
     { params }: { params: { id: string } }
 ) {
     try {
@@ -88,7 +88,7 @@ export async function PUT(
 
 // DELETE /api/students/[id] - Delete a student
 export async function DELETE(
-    request: Request,
+    _request: Request,
     { params }: { params: { id: string } }
 ) {
     try {

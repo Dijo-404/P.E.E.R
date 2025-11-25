@@ -16,6 +16,9 @@ module.exports = {
             },
         },
         extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -55,6 +58,10 @@ module.exports = {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
+            },
+            boxShadow: {
+                'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                'glow': '0 0 15px rgba(79, 70, 229, 0.3)',
             },
             keyframes: {
                 "accordion-down": {

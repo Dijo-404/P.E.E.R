@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { performanceSchema } from '@/lib/validations';
+import { prisma } from '../../../lib/prisma';
+import { performanceSchema } from '../../../lib/validations';
 
 // GET /api/performance - List performance records
 export async function GET(request: Request) {
