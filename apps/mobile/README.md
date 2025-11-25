@@ -58,7 +58,7 @@ pnpm install
 pnpm start
 
 # Start with cleared cache
-pnpm start --clear
+pnpm start --reset-cache
 
 # Run on Android emulator
 pnpm android
@@ -125,6 +125,12 @@ For full native capabilities, build a standalone app using `expo build` or EAS B
 
 - Ensure your phone and computer are on the same network
 - Try using the tunnel connection: `pnpm start --tunnel`
+
+### Startup Error: `Use process(css).then(cb)`
+
+This error occurs when there is a mismatch between NativeWind and Expo versions.
+- **Fix**: Ensure you are using NativeWind v4. Run `pnpm install` to get the correct dependencies.
+- **Reset Cache**: Run `pnpm start --reset-cache`.
 
 ### Metro Bundler Issues
 
